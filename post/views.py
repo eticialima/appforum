@@ -13,7 +13,8 @@ from django.template.defaultfilters import slugify
 class PostView(BaseAdminUsersall, ListView):
         model = Post
         template_name = 'post/post.html'
-
+        context_object_name = "post_disable"
+        
         def get_queryset(self):
                 title = self.request.GET.get('title')
                 if title:

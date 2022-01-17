@@ -10,6 +10,10 @@
                                         <input name="title" type="text" value="{{request.GET.title}}"
                                                 class="form-control" placeholder="Pesquisar...">
                                 </form>
+                                <a href="{%  url 'post' %}">
+                                        <button class="btn-default btn-red" type="button">Perguntas Desativadas</button>
+                                </a>
+
                         </div>
                         {% if request.GET.title %}
                         <a href="{%  url 'profile:user-profile' perfil.profile.user.user_name %}">
@@ -19,8 +23,7 @@
                 </div>
         </div> 
         <div class="col-md-9">
-                {% for post in page_obj %}
-                {% if post.is_activate == True %}
+                {% for post in page_obj %}  
                 <div class="card-box">
                         {% if perfil == request.user and request.user.is_authenticated %}
                         <div class="box-index-icon link-success">
@@ -55,8 +58,7 @@
                                 </div>
                              
                         </div>
-                </div>
-                {% endif %}
+                </div>  
                 {% endfor %} 
                 <div class="p-4">
                         {% if page_obj.paginator.num_pages > 1 %}
