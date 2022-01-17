@@ -1,0 +1,19 @@
+{% extends 'base/_base_home.html' %}
+{% block body_home %}
+{% include 'base/_navbar.html' %}
+<div class="container box">
+        <div class="row">
+                <div class="col-md-6 form-signin text-center lead">
+                        <h2>{{ object.first_name }} {{ object.last_name }}</h2>
+                        <p>Tem a certeza que deseja apagar este usuário?<br> Todos os dados serão removidos. </p>
+                        <form method="POST" class="form" name="form_canal">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                        <button type="submit" class="btn-default btn-red" name="btn_cadastro_canal">Sim</button>
+                                        <button class="btn-default btn-red" onclick="location.href='{% url 'profile:users-profile' %}'">Cancelar</button> 
+                                </div>
+                        </form>
+                </div>
+        </div>
+</div> 
+{% endblock %}

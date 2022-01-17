@@ -1,0 +1,67 @@
+{% load static %}
+<div class="row">
+        <div class="col-md-3">
+                <div class="p-3 bg-light">
+                        <h2>Perguntas</h2>
+                        <div class="form-group mb-2">
+                                <span class="fw-bold py-3">Titulo: </span>
+                                <form action="{% url 'profile:user-profile' perfil.profile.user.user_name %}"
+                                        method="get">
+                                        <input name="title" type="text" value="{{request.GET.title}}"
+                                                class="form-control" placeholder="Pesquisar...">
+                                </form>
+                        </div>
+                        {% if request.GET.title %}
+                        <a href="{%  url 'profile:user-profile' perfil.profile.user.user_name %}">
+                                <button class="btn-default btn-red" type="button">Reset</button>
+                        </a>
+                        {% endif %}
+                </div>
+        </div> 
+        <div class="col-md-9">
+                {% for post in page_obj %}
+                {% if post.is_activate == True %}
+                <div class="card-box">
+                        {% if perfil == request.user and request.user.is_authenticated %}
+                        <div class="box-index-icon link-success">
+                                <a class="link-light" href="{%  url 'post-update' post.pk %}"><i class="btn-red fas fa-cog fa-2x mx-2"></i></a>
+                        </div>
+                        {% endif %} 
+                        <div class="box-container">
+                                
+                                <h6><a href="{% url 'home:post-detail' post.pk %}" class="text-dark">{{post.title}}</a>
+                                </h6>
+                                <div class="box-index-container">
+                                        <div class="box-category">
+                                                {% for tag in post.tags.all %}
+                                                <span class="badge btn-red mx-1">{{tag.name}} </span>
+                                                {% endfor %}
+                                        </div>
+                                        <div class="box-user">
+                                                <div class="box-index-icon link-danger mx-2">
+                                                        <i class="fas fa-heart mx-2"></i>
+                                                        <span>12</span>
+                                                </div>
+                                                <div class="box-index-icon link-success mx-2">
+                                                        <i class="fas fa-list-ul mx-2"></i>
+                                                        <span>33</span>
+                                                </div>
+                                                <div class="box-index-icon link-warning mx-2">
+                                                        <i class="fas fa-eye mx-2"></i>
+                                                        <span>12</span>
+                                                </div>
+
+                                        </div>
+                                </div>
+                             
+                        </div>
+                </div>
+                {% endif %}
+                {% endfor %} 
+                <div class="p-4">
+                        {% if page_obj.paginator.num_pages > 1 %}
+                        {% include 'profile/paginacao.html' %}
+                        {% endif %} 
+                </div>
+        </div>
+</div> 

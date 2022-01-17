@@ -1,0 +1,269 @@
+{% load static %}
+<header>
+        <div id="brand"><a href="/">ForumXYZ</a></div> 
+        <nav>
+                <ul>
+                        <li>
+                        <form class="d-flex" method="get" action="{% url 'home:home' %}"> 
+                                <input type="text" name="title" id="title" placeholder="Pesquisar..." class="search">
+                        </form>
+                </li>
+                        <li><a href="/">Inicio</a></li>
+                        <li><a href="#">Sobre</a></li>
+                        <li><a href="#">Contato</a></li> 
+                        <li><button class=" btn-default btn-red d-flex" onclick="location.href='{% url 'post-create' %}'"><i class="fa fa-plus mx-2"></i> Perguntar</button></li>
+                        <li>
+                                {% if user.is_authenticated %}
+                          
+                                <div class="action">
+                                        <div class="profile" onclick="menuToggle();">
+                                                {% if user.profile.image %}
+                                                <div class="circle-home">
+                                                        <img src="{{ user.profile.image.url }}" class="img-fluid"
+                                                                alt="{{ user.first_name }}" />
+                                                </div>
+                                                {% else %}
+                                                <div class="circle-home">
+                                                        <img src="{% static 'images/default.png' %}" class="img-fluid"
+                                                                alt="default" />
+                                                </div>
+                                                {% endif %}
+                                        </div>
+
+                                        <div class="menu text-start lh-lg">
+                                                <div>
+                                                        <a href="{% url 'profile:user-profile' user.user_name %}" class="link-secondary">Meu Perfil</a> 
+                                                        <button class=" btn-default btn-red d-flex" onclick="location.href='{% url 'accounts:logout' %}'">Logout</button>
+                                                     
+                                                </div>
+                                        </div>
+                                </div>
+                                {% else %}
+                                        <button class=" btn-default btn-red d-flex" onclick="location.href='{% url 'accounts:login' %}'">Login</button> 
+                                {% endif %}
+                        </li>
+                </ul>
+        </nav>
+
+        <div id="navbar-icon" onclick="toggleMobileMenu(this)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+                <ul class="mobile-menu">
+                        <li><a href="/">Inicio</a></li>
+                        <li><a href="#">Sobre</a></li>
+                        <li><a href="#">Contato</a></li> 
+                        <br>
+                        {% if user.is_authenticated %} 
+                        <li><a href="#">{{ user.user_name }}</a></li> 
+                        <li><a href="{% url 'profile:user-profile' user.user_name %}">Meu Perfil</a></li> 
+                        <li><button class=" btn-default btn-red d-flex" onclick="location.href='{% url 'accounts:logout' %}'">Logout</button></li> 
+                        {% else %} 
+                        <button class=" btn-default btn-red d-flex" onclick="location.href='{% url 'accounts:login' %}'">Login</button></li>
+                        {% endif %} 
+                </ul>
+        </div>
+</header>
+<script>
+        function toggleMobileMenu(menu) {
+                menu.classList.toggle('open');
+        } 
+        function menuToggle() {
+                const toggleMenu = document.querySelector('.menu');
+                toggleMenu.classList.toggle('active')
+        }
+</script>
+<style>
+        header a {
+                text-decoration: none;
+        }
+
+        header {
+                background-color: rgb(17, 50, 77);
+                height: 100px;
+                display: flex;
+                justify-content: space-evenly;
+                align-content: space-around;
+                flex-wrap: nowrap;
+                flex-direction: row;
+                align-items: stretch;
+        }
+
+        #brand {
+                font-weight: bold;
+                font-size: 18px;
+                display: flex;
+                align-items: center;
+        }
+
+        #brand a {
+                color: #fdfdfd;
+        }
+
+        ul {
+                list-style: none;
+                padding: 50px;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+        }
+
+        ul a {
+                color: white; 
+                font-size: 17px;
+                padding: 7px 13px;
+                border-radius: 3px;
+                text-decoration: none;
+        }
+
+        ul li {
+                padding: 5px;
+                margin-left: 10px;
+        }
+  
+        ul li a:hover { 
+                color: rgb(215, 127, 161); 
+                text-decoration: none;
+        }
+
+        #navbar-icon {
+                margin: auto 0;
+                display: none;
+                cursor: pointer;
+        }
+
+        #navbar-icon div {
+                width: 35px;
+                height: 3px;
+                background-color: white;
+                margin: 6px 0;
+                transition: 0.4s;
+        }
+
+        .open .bar1 {
+                -webkit-transform: rotate(-45deg) translate(-6px, 6px);
+                transform: rotate(-45deg) translate(-6px, 6px);
+        }
+
+        .open .bar2 {
+                opacity: 0;
+        }
+
+        .open .bar3 {
+                -webkit-transform: rotate(45deg) translate(-6px, -8px);
+                transform: rotate(45deg) translate(-6px, -8px);
+        }
+
+        .open .mobile-menu {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                background-color: #11324D;
+                ;
+        }
+
+        .mobile-menu {
+                display: none;
+                position: absolute;
+                top: 100px;
+                left: 0;
+                height: calc(100vh - 50px);
+                width: 100%;
+        }
+
+        .mobile-menu li {
+                margin-bottom: 10px;
+        }
+
+        .logo {
+                color: #393939;
+                justify-self: start;
+                margin-left: 20px;
+                cursor: pointer;
+                text-decoration: none;
+                font-size: 2rem;
+                display: flex;
+                align-items: center;
+        }
+
+        .logo:hover {
+                color: rgb(215, 127, 161);
+                text-decoration: none;
+        }
+
+        .circle-home {
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                overflow: hidden;
+                position: relative;
+                margin-inline: auto;
+        }
+
+        .action {
+                position: fixed;
+                top: 20px;
+        }
+
+        .action .profile {
+                border-radius: 50%;
+                cursor: pointer;
+                height: 60px;
+                overflow: hidden;
+                position: relative;
+                width: 60px;
+        }
+
+        .action .profile img {
+                width: 100%;
+                top: 0;
+                position: absolute;
+                object-fit: cover;
+                left: 0;
+                height: 100%;
+        }
+
+        .action .menu {
+                background-color: #FFF;
+                box-shadow: rgb(111 111 111 / 20%) 0px 0px 8px 0px;
+                border-radius: 20px;
+                padding: 25px 40px;
+                position: relative;
+                width: 200px;
+                transition: 0.5s;
+                top: 0px;
+                right: 130px;
+                visibility: hidden;
+                opacity: 0;
+        }
+
+        .action .menu.active {
+                opacity: 1;
+                top: 0px;
+                right: 130px;
+                visibility: visible;
+        }
+
+        .action .menu::before {
+                background-color: #fff;
+                content: '';
+                height: 20px;
+                position: absolute;
+                right: 30px;
+                transform: rotate(45deg);
+                top: -5px;
+                width: 20px;
+        }
+
+        @media only screen and (max-width: 600px) {
+                header nav {
+                        display: none;
+                }
+
+                #navbar-icon {
+                        display: block;
+                }
+        }
+</style>

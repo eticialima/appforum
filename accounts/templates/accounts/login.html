@@ -1,0 +1,32 @@
+{% include 'base/_head.html' %}
+{% load static %}
+{% block body_home %}
+{% include 'base/_navbar.html' %}
+<div class="container box"> 
+        <div class="row">
+                {% include 'base/_messages.html' %} 
+                <main class="col-md-4 form-signin text-center lead">
+                        <img class="img-fluid rounded-circle" src="{% static 'images/default.png' %}" alt="logo" width="150" height="150">
+                        <h3>Entrar</h3>
+                        <form method="POST" autocomplete="off" id="form-login">
+                                {% csrf_token %}
+                                <div class="form-group mt-3 mx-5">
+                                        <label for="username">Email</label>
+                                        <input type="email" id="username" name="username" class="form-control item" value="{{ request.POST.username }}" required autofocus>
+                                </div>
+                                <div class="form-group mt-3 mx-5">
+                                        <label for="password">Senha</label>
+                                        <input type="password" id="password" name="password" class="form-control item" required>
+                                </div>
+                                <div class="form-group mt-3 mx-5">
+                                        <button class="btn-default btn-red" type="submit">Conecte-se</button>
+                                </div>
+                                <div class="form-group mt-3 fs-6 text-muted font-italic py-3">
+                                        <a class="link-secondary" href="{% url 'accounts:user-new' %}">Ainda não tem conta? Cadastre-se</a><br>
+                                        <a class="link-secondary " role="button" href="{% url 'accounts:password-reset' %}">Esqueceu sua senha?</a>
+                                </div>
+                        </form>
+                </main>
+        </div>
+</div>
+{% endblock %}

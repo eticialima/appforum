@@ -1,0 +1,13 @@
+{% extends 'base/_base_home.html' %}
+{% block body_home %}
+{% include 'base/_navbar.html' %}
+<div class="container box">
+        <div class="row">
+                <div class="col-md-6 form-signin text-center lead">
+                        <h1 class="h3 mb-3 fw-normal">Aviso de Segurança</h1>
+                        <p><b>Você foi desconectado(a) por inatividade.</b><br> Por favor, verifique a sua conexão com a internet e por segurança é necessario que você se identifique novamente.</p>
+                        <button class="btn-default btn-red" onclick="location.href='{% url 'accounts:login' %}'"><a></a>Clique aqui para efetuar seu login</button> 
+                </div>
+        </div>
+</div>
+{% endblock %}

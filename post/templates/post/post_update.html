@@ -1,0 +1,89 @@
+{% extends 'base/_base_home.html' %}
+{% block title %}Post{% endblock %}
+{% load widget_tweaks %}
+{% load static %}
+{% block body_home %}
+{% include 'base/_navbar.html' %}
+<div class="container box">
+        <div class="row">
+                <main class="col-md-10 form-signin text-center lead">
+                        <form id="mainform" method="post" class="form" action="" autocomplete="off"
+                                enctype="multipart/form-data">
+                                {% csrf_token %}
+                             
+                                <label>Autor da postagem</label>
+                                {% render_field form.author class="form-control" type="text" disabled="disabled" %}
+                                <br>
+                                <div class="row">
+                                        <div class="col">
+                                                <label>Titulo</label>
+                                                {% render_field form.title class="form-control" type="text" %}
+                                        </div>
+                                        <br>
+                                        <div class="col">
+                                                <label>Descrição</label>
+                                                {% render_field form.desc class="form-control" type="text" rows="3" %}
+                                        </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                        <div class="col">
+                                                <label>Categoria</label>
+                                                {% render_field form.category class="form-control form-select" id="category" name="category" %}
+                                        </div>
+                                        <br>
+                                        <div class="col">
+                                                <label><code class="mx-5">Tags</code></label>
+                                                <input type="text" name="tags" data-role="tagsinput" class="form-control" id="tags" name="tags" value="{% for tag in post.tags.all %}{{ tag }},{% endfor %}">
+                                        </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col">
+                                                <label>Data de Criação</label>
+                                                {% render_field form.created_date class="form-control" type="text" disabled="disabled" %}
+                                        </div>
+                                        <br>
+                                        <div class="col">
+                                                <label>Data de Publicação</label>
+                                                {% render_field form.published_date class="form-control" type="text" disabled="disabled" %}
+                                        </div>
+                                </div>
+                                <br>
+                                <label><code>Publicação Ativa ?</code></label>
+                                {% render_field form.is_activate class="form-check-input" id="is_activate" name="is_activate" %}
+                                <br>
+                                <br>
+                             
+                                
+                                <div class="row">
+                                        <label>Pode upar 3 arquivos até 500M</label>
+                                        <div class="col">  
+                                                {% render_field form.files1 class="form-control form-control-sm" type="file" %} 
+                                                <p class="text-muted fst-italic" style="font-size:12px;">Formato suportado | Winrar | Zip | JPG | PNG |</p>
+                                        </div>
+                                        <div class="col">
+                                                {% render_field form.files2 class="form-control form-control-sm" type="file" %}
+                                                <p class="text-muted fst-italic" style="font-size:12px;">Formato suportado | Winrar | Zip | JPG | PNG |</p>
+                                        </div>
+                                        <div class="col">
+                                                {% render_field form.files3 class="form-control form-control-sm" type="file" %}
+                                                <p class="text-muted fst-italic" style="font-size:12px;">Formato suportado | Winrar | Zip | JPG | PNG |</p>
+                                        </div>
+                                </div> 
+                           
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                        <button type="submit" class="btn-default btn-red">Atualizar</button> 
+                                </div>
+                        </form>
+                </main>
+        </div>
+</div>
+<script>
+        // Formulario não envia campos desabilitados
+        $('#mainform').submit(function (e) {
+                $(':disabled').each(function (e) {
+                        $(this).removeAttr('disabled');
+                })
+        });
+</script>
+{% endblock %}
