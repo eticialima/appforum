@@ -39,7 +39,12 @@ class DetailView(DetailView):
                 post_list = self.model.objects.filter(author__is_active__exact=True)[:5]
                 cat = Category.objects.all()
                 tags = Tag.objects.all()
-
+                
+                # contador de visualização do post
+                post_object = self.model.objects.get(pk=pk)
+                post_object.views = post_object.views+1
+                post_object.save()
+                
                 context = {
                         'post': post, 
                         'form': form,
@@ -53,7 +58,7 @@ class DetailView(DetailView):
 
         def post(self, request, pk, *args, **kwargs):
                         post = Post.objects.get(pk=pk)
-                        form = SocialCommentForm(request.POST)
+                        form = SocialCommentForm(request.POST) 
                         cat = Category.objects.all()
                         tags = Tag.objects.all()
 
@@ -61,8 +66,8 @@ class DetailView(DetailView):
                                 new_comment = form.save(commit=False)
                                 new_comment.author = request.user
                                 new_comment.post = post
-                                new_comment.save()
-
+                                new_comment.save() 
+                                
                         comments = SocialComment.objects.filter(post=post).order_by('-created_on')
 
                         context = {

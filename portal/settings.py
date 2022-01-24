@@ -201,7 +201,7 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 # LOGIN_REDIRECT_URL = 'index'
 # LOGOUT_REDIRECT_URL = 'index'
 LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 
@@ -215,11 +215,11 @@ if DEBUG:
 # --- Production --- #
 # if not DEBUG:
 # EMAIL_HOST = 'smtp.office365.com'
-# EMAIL_HOST_USER = 'noreply@dmcgroup.com.br'
-# EMAIL_HOST_PASSWORD = 'huB4NHFFrc8EPKgB'
+# EMAIL_HOST_USER = 'email-here'
+# EMAIL_HOST_PASSWORD = 'password-here'
 # EMAIL_PORT = 587
 # EMAIL_USE_TLS = True
-# DEFAULT_FROM_EMAIL = 'noreply@dmcgroup.com.br'
+# DEFAULT_FROM_EMAIL = 'email-here'
 # SERVER_EMAIL = DEFAULT_FROM_EMAIL
 
 
