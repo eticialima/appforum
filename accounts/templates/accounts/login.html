@@ -4,8 +4,8 @@
 {% include 'base/_navbar.html' %}
 <div class="container box"> 
         <div class="row"> 
-                <main class="col-md-4 form-signin text-center lead">
-                        {% include 'base/_messages.html' %}
+                {% include 'base/_messages.html' %}
+                <main class="col-md-4 form-signin text-center lead"> 
                         <img class="img-fluid rounded-circle" src="{% static 'images/default.png' %}" alt="logo" width="150" height="150">
                         <h3>Entrar</h3>
                         <form method="POST" autocomplete="off" id="form-login">

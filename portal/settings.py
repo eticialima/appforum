@@ -8,8 +8,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
-"""
-from django.contrib.messages import constants
+""" 
 import os
 from pathlib import Path
 from decouple import config
@@ -197,8 +196,7 @@ LOGOUT_REDIRECT_URL = '/'
 # --- development --- #
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-<<<<<<< HEAD
+ 
 # --- Production --- #
 # if not DEBUG:
 # EMAIL_HOST = 'smtp.office365.com'
@@ -208,16 +206,4 @@ if DEBUG:
 # EMAIL_USE_TLS = True
 # DEFAULT_FROM_EMAIL = 'email-here'
 # SERVER_EMAIL = DEFAULT_FROM_EMAIL
-
-
-=======
->>>>>>> 4946a0b1c3e0a0a9603c42114ad1e31bbd264ac0
-# ----------------------------------------------------------
-# --- Messages --- #
-MESSAGE_TAGS = {
-    constants.ERROR: 'alert-danger',
-    constants.WARNING: 'alert-warning',
-    constants.DEBUG: 'alert-info',
-    constants.SUCCESS: 'alert-success',
-    constants.INFO: 'alert-info',
-}
+ 

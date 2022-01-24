@@ -1,7 +1,7 @@
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.urls.base import reverse 
-from django.contrib import messages
+from django.contrib import messages 
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.views import LoginView, PasswordChangeView, PasswordResetView, PasswordResetConfirmView, PasswordResetCompleteView
 from base.base_admin_permissions import BaseAdminUsersAd, BaseAdminUsersall
@@ -12,7 +12,8 @@ from accounts.models import CustomUser
 
 class UserLogin(SuccessMessageMixin, LoginView):
         template_name = 'accounts/login.html' 
-        
+        success_message = 'Login Efetuado com sucesso.'
+ 
         def get(self, request, *args, **kwargs):
                 if self.request.user.is_authenticated:
                         return redirect('home:home')

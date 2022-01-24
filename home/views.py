@@ -11,7 +11,7 @@ class HomeView(ListView):
         model = Post
         template_name = 'home/home.html'
         paginate_by = 8
-
+ 
         def get_queryset(self):
                 title = self.request.GET.get('title')
                 if title:
@@ -21,8 +21,9 @@ class HomeView(ListView):
                 return post_list
 
         def get_context_data(self, **kwargs):
-                context = super().get_context_data(**kwargs)
+                context = super().get_context_data(**kwargs)  
                 context['form'] = PostForm()
+                context['comments'] = SocialComment.objects.filter()
                 context['category'] = Category.objects.all()
                 context['tags'] = Tag.objects.all()
                 return context
