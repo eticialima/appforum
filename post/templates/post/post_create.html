@@ -6,7 +6,7 @@
 {% include 'base/_navbar.html' %}
 <div class="container box">
         <div class="row"> 
-                <main class="col-md-6 form-signin text-center lead">
+                <main class="col-md-10 form-signin text-center lead">
                         <form id="post-form" method="POST" action="{% url 'post-create' %}" autocomplete="off" enctype="multipart/form-data">
                                 {% csrf_token %}   
                                 <br>
@@ -49,6 +49,8 @@
                            
                                 <label>Publicação Ativa ?</label>
                                 {% render_field form.is_activate class="form-check-input" id="is_activate" name="is_activate" %}
+                                <br>
+                                <br>
                                 <br>
                                 <div class="row">
                                         <label>Pode upar 3 arquivos até 500M</label>

@@ -112,18 +112,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'portal.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
+ 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -196,10 +185,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
 # ----------------------------------------------------------
-# --- Login Logout User --- #
-# LOGIN_URL = 'login'
-# LOGIN_REDIRECT_URL = 'index'
-# LOGOUT_REDIRECT_URL = 'index'
+# --- Login Logout User --- # 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
@@ -212,6 +198,7 @@ LOGOUT_REDIRECT_URL = '/'
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+<<<<<<< HEAD
 # --- Production --- #
 # if not DEBUG:
 # EMAIL_HOST = 'smtp.office365.com'
@@ -223,9 +210,10 @@ if DEBUG:
 # SERVER_EMAIL = DEFAULT_FROM_EMAIL
 
 
+=======
+>>>>>>> 4946a0b1c3e0a0a9603c42114ad1e31bbd264ac0
 # ----------------------------------------------------------
 # --- Messages --- #
-
 MESSAGE_TAGS = {
     constants.ERROR: 'alert-danger',
     constants.WARNING: 'alert-warning',

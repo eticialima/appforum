@@ -24,11 +24,11 @@
         <div class="bg-light p-4 lead">
             <div class="row">   
                 <div class="col-md-4">   
-                    <div class="circle"> 
+                 
                         {% if perfil.profile.image %}  
-                            <img id="preview" src="{{perfil.profile.image.thumb.url}}" alt="{{perfil.first_name}}"/>  
+                            <img id="preview" class="rounded mx-auto d-block" src="{{perfil.profile.image.thumb.url}}" alt="{{perfil.first_name}}" width="250" />  
                         {% else %} 
-                            <img id="preview" src="{% static 'images/default.png' %}" alt="default" alt="foto de perfil" height="200"/> 
+                            <img id="preview" class="rounded mx-auto d-block"src="{% static 'images/default.png' %}" alt="default" alt="foto de perfil" height="200"/> 
                         {% endif %}   
                   
                         {% if perfil == request.user and request.user.is_authenticated %} 
@@ -41,7 +41,7 @@
                                 </form>   
                         {% endif %} 
                    
-                    </div> 
+                 
                 </div>   
                 <div class="col-md-8"> 
                     <div class="d-flex justify-content-between align-items-center">
@@ -153,6 +153,9 @@
     </section>  
     {% include 'base/_messages.html' %}
     <section class="py-5">    
+
+        {% block body_profile %}
+        {% endblock %}
         {% include 'profile/post-profile.html' %}  
     </section> 
     {% endif %}   
