@@ -10,10 +10,11 @@
                                         <input name="title" type="text" value="{{request.GET.title}}"
                                                 class="form-control" placeholder="Pesquisar...">
                                 </form>
+                                {% if perfil == request.user and request.user.is_authenticated %}
                                 <a href="{%  url 'post' %}">
                                         <button class="btn-default btn-red" type="button">Perguntas Desativadas</button>
                                 </a>
-
+                                {% endif %}
                         </div>
                         {% if request.GET.title %}
                         <a href="{%  url 'profile:user-profile' perfil.profile.user.user_name %}">

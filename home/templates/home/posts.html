@@ -1,4 +1,4 @@
-{% load static %}
+{% load static %} 
 {% for post in post_list %}
 {% if post.is_activate == True %} 
 <div class="card-box">
@@ -9,7 +9,7 @@
                 </div>
                 <div class="box-index-icon link-success"> 
                         <i class="fas fa-list-ul mx-2"></i>  
-                        <span>{{comments.all.count}}</span>  
+                        <span>{{post.socialcomment.count}}</span>  
                     
                 </div>
                 <div class="box-index-icon link-warning"> 

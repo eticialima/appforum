@@ -279,9 +279,7 @@ textarea:focus {
 .pagination-previous,
 .pagination-next {
         color: rgb(121, 64, 159);
-}
-
-
+} 
 
 @media (max-width: 599.95px) {
         .box-icon {

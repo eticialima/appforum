@@ -4,14 +4,14 @@ from django.views.generic import DetailView, ListView
 from taggit.models import Tag
 from post.models import Post, Category, SocialComment
 from post.forms import PostForm
-from home.forms import SocialCommentForm
+from home.forms import SocialCommentForm 
 
 
 class HomeView(ListView):
         model = Post
         template_name = 'home/home.html'
         paginate_by = 8
- 
+       
         def get_queryset(self):
                 title = self.request.GET.get('title')
                 if title:
@@ -20,10 +20,9 @@ class HomeView(ListView):
                         post_list = self.model.objects.filter(author__is_active__exact=True).order_by('?')
                 return post_list
 
-        def get_context_data(self, **kwargs):
-                context = super().get_context_data(**kwargs)  
-                context['form'] = PostForm()
-                context['comments'] = SocialComment.objects.filter()
+        def get_context_data(self, **kwargs): 
+                context = super(HomeView, self).get_context_data(**kwargs)   
+                context['form'] = PostForm() 
                 context['category'] = Category.objects.all()
                 context['tags'] = Tag.objects.all()
                 return context
@@ -44,7 +43,7 @@ class DetailView(DetailView):
                 # contador de visualização do post
                 post_object = self.model.objects.get(pk=pk)
                 post_object.views = post_object.views+1
-                post_object.save()
+                post_object.save() 
                 
                 context = {
                         'post': post, 

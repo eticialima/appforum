@@ -1,5 +1,9 @@
-{% extends 'profile/profile.html' %} 
-{% block body_profile %}  
+{% extends 'base/_base_home.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block body_home %}  
+{% include 'base/_navbar.html' %}
 <div class="g-4 py-3"> 
     <!-- <button class="btn-default btn-red"  onclick="location.href='{% url 'post-create' %}'"><a></a>Criar Post</button>   -->
     <!-- <button class="btn-default btn-orange"  onclick="location.href='#'"><a></a>Comentarios</button>  

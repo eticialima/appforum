@@ -51,8 +51,8 @@ class Post(models.Model):
 class SocialComment(models.Model):
         comment = models.TextField()
         created_on = models.DateTimeField(default=timezone.now)
-        author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='social_comment_author')
-        post = models.ForeignKey(Post, on_delete=models.CASCADE)
+        author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='social_comment_author') 
+        post = models.ForeignKey(Post, related_name="socialcomment", on_delete=models.CASCADE)
         likes = models.ManyToManyField(get_user_model(), blank=True, related_name='comment_likes')
         dislikes = models.ManyToManyField(get_user_model(), blank=True, related_name='comment_dislikes')
         parent = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True, related_name='+')
