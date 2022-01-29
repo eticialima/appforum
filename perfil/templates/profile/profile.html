@@ -1,10 +1,8 @@
 {% extends 'base/_base_home.html' %}
 {% load widget_tweaks %} 
 {% load static %}  
-{% block body_home %}
-{% include 'base/_navbar.html' %}   
-<div class="container-sm"> 
-    
+{% block body_home %} 
+<div class="container-sm">
     {% if not perfil.profile.user.is_active %} 
     <section class="container-sm py-5">  
         <div class="bg-light p-4 lead">
@@ -23,14 +21,12 @@
     <section class="py-5">  
         <div class="bg-light p-4 lead">
             <div class="row">   
-                <div class="col-md-4">   
-                 
+                <div class="col-md-4">    
                         {% if perfil.profile.image %}  
                             <img id="preview" class="rounded mx-auto d-block" src="{{perfil.profile.image.thumb.url}}" alt="{{perfil.first_name}}" width="250" />  
                         {% else %} 
                             <img id="preview" class="rounded mx-auto d-block"src="{% static 'images/default.png' %}" alt="default" alt="foto de perfil" height="200"/> 
-                        {% endif %}   
-                  
+                        {% endif %}    
                         {% if perfil == request.user and request.user.is_authenticated %} 
                                 <form method="post" action="{% url 'profile:photo-profile' perfil.pk %}" enctype="multipart/form-data">
                                         {% csrf_token %} 

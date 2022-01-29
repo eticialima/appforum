@@ -1,6 +1,6 @@
 {% extends 'base/_base_home.html' %}
 {% block title %}Apagar Post{% endblock %} 
-{% block main_content %} 
+{% block body_home %}  
 <div class="box text-center">
     <div class="form-signin"> 
         <h2>Aviso</h2>
@@ -13,7 +13,7 @@
             {% csrf_token %}
             <div class="form-group">
                 <button type="submit" class="btn-default btn-red">Sim</button>   
-                <a class="btn-default btn-red" role="button" href="{% url 'post'%}">Cancelar</a>
+                <button class="btn-default btn-red" onclick="location.href='{% url 'post'%}'">Cancelar</button> 
             </div>
         </form>
     </div>

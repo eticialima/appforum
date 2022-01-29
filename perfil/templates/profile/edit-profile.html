@@ -1,8 +1,7 @@
 {% extends 'base/_base_home.html' %}
 {% load widget_tweaks %}
 {% load static %}
-{% block body_home %}
-{% include 'base/_navbar.html' %}
+{% block body_home %} 
 {% include 'base/_messages.html' %}
 <div class="container-sm py-5">
         <div class="bg-light p-5 lead">
@@ -85,8 +84,9 @@
                                 </div>
                         </div>
                         <div class="mb-3">
-                                <button type="button" class="mr-2 btn-default btn-red" onclick="location.href='{% url 'profile:user-profile' request.user.user_name %}'">Voltar</button>
                                 <button type="submit" class="btn-default btn-gray">Update</button>
+                                <button type="button" class="mr-2 btn-default btn-red" onclick="location.href='{% url 'profile:user-profile' request.user.user_name %}'">Voltar</button>
+
                         </div>
                 </form>
         </div>

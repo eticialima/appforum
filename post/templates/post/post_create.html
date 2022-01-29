@@ -2,8 +2,7 @@
 {% block title %}Post{% endblock %} 
 {% load widget_tweaks %}
 {% load static %}
-{% block body_home %}
-{% include 'base/_navbar.html' %}
+{% block body_home %} 
 <div class="container box">
         <div class="row"> 
                 <main class="col-md-10 form-signin text-center lead">
@@ -73,7 +72,7 @@
                               
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                         <button type="submit" class="btn-default btn-red" name="btn_adicionar">Criar</button>
-
+                                        <button type="button" class="mr-2 btn-default btn-red" onclick="location.href='{% url 'home:home' %}'">Voltar</button> 
                                 </div>
                         </form>
                 </main>
