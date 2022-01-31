@@ -1,48 +1,47 @@
-{% load static %}   
+{% load static %}  
 <div class="table-responsive">
-    <table class="text-center table table-bordered rounded mt-3 shadow-sm">
-         <thead>
-               <tr>
-                  <th scope="col">#</th>  
-                  <th scope="col">Usuario</th> 
-                  <th scope="col">Titulo</th> 
-                  <th scope="col">Publicado</th>
-                  <th scope="col">Ações</th>
-               </tr>
-         </thead>    
-      
-         {% for objects in post_disable %}  
-            {% if request.user == objects.author %} 
-            {% if objects.is_activate == False %}
-            <tbody>
-                  <tr> 
-                     <td scope="row">{{ objects.id }}</td> 
-                     <td scope="row">{{ objects.author }}</td>
-                     <td scope="row">{{ objects.title }}</td>  
-                     <td scope="row">
-                        {% if objects.is_activate %}
-                        <div class="link-success">
-                           <i class="fas fa-check-circle fa-2x"></i> 
-                        </div> 
-                        {% else %}
-                        <div class="link-danger">
-                           <i class="fas fa-times-circle fa-2x"></i> 
-                        </div> 
-                        {% endif %} 
-                     </td>    
-                     <td>
-                        <a class="link-warning me-2" href="{% url 'post-update' objects.pk %}">
-                           <i class="fas fa-file-invoice fa-2x" aria-hidden="true"></i>
-                        </a>
-                        <a class="link-danger" href="{% url 'post-delete' objects.pk %}">
-                           <i class="fas fa-trash fa-2x" aria-hidden="true"></i>
-                        </a>
-                     </td> 
-                  </tr>
-            </tbody>
-            {% endif %}
-            {% endif %}
-            {% endfor %}
-    </table>
-</div> 
- 
+        <table class="text-center table table-bordered rounded mt-3 shadow-sm">
+                <thead>
+                        <tr>
+                                <th scope="col">#</th>  
+                                <th scope="col">Usuario</th> 
+                                <th scope="col">Titulo</th> 
+                                <th scope="col">Publicado</th>
+                                <th scope="col">Ações</th>
+                        </tr>
+                </thead>    
+        
+                {% for objects in post_disable %}  
+                {% if request.user == objects.author %} 
+                {% if objects.is_activate == False %}
+                <tbody>
+                        <tr> 
+                        <td scope="row">{{ objects.id }}</td> 
+                        <td scope="row">{{ objects.author }}</td>
+                        <td scope="row">{{ objects.title }}</td>  
+                        <td scope="row">
+                                {% if objects.is_activate %}
+                                <div class="link-success">
+                                <i class="fas fa-check-circle fa-2x"></i> 
+                                </div> 
+                                {% else %}
+                                <div class="link-danger">
+                                <i class="fas fa-times-circle fa-2x"></i> 
+                                </div> 
+                                {% endif %} 
+                        </td>    
+                        <td>
+                                <a class="link-warning me-2" href="{% url 'post-update' objects.pk %}">
+                                <i class="fas fa-file-invoice fa-2x" aria-hidden="true"></i>
+                                </a>
+                                <a class="link-danger" href="{% url 'post-delete' objects.pk %}">
+                                <i class="fas fa-trash fa-2x" aria-hidden="true"></i>
+                                </a>
+                        </td> 
+                        </tr>
+                </tbody>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+        </table>
+</div>  

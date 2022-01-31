@@ -1,4 +1,5 @@
-{% load static %}
+
+{% load static %} 
 <div class="row">
         <div class="col-md-3">
                 <div class="p-3 bg-light">
@@ -10,10 +11,11 @@
                                         <input name="title" type="text" value="{{request.GET.title}}"
                                                 class="form-control" placeholder="Pesquisar...">
                                 </form>
-                                {% if perfil == request.user and request.user.is_authenticated %}
-                                <a href="{%  url 'post' %}">
-                                        <button class="btn-default btn-red" type="button">Perguntas Desativadas</button>
-                                </a>
+                                <br>
+                                {% if perfil == request.user and request.user.is_authenticated %} 
+                                <a href="{%  url 'profile:config' %}">
+                                        <button class="btn-default btn-red" type="button">Configurações</button>
+                                </a> 
                                 {% endif %}
                         </div>
                         {% if request.GET.title %}
@@ -24,6 +26,7 @@
                 </div>
         </div> 
         <div class="col-md-9">
+                  
                 {% for post in page_obj %}  
                 <div class="card-box">
                         {% if perfil == request.user and request.user.is_authenticated %}
@@ -53,18 +56,16 @@
                                                 <div class="box-index-icon link-warning mx-2">
                                                         <i class="fas fa-eye mx-2"></i>
                                                         <span>12</span>
-                                                </div>
-
+                                                </div> 
                                         </div>
-                                </div>
-                             
+                                </div> 
                         </div>
                 </div>  
                 {% endfor %} 
                 <div class="p-4">
                         {% if page_obj.paginator.num_pages > 1 %}
-                        {% include 'profile/paginacao.html' %}
+                        {% include 'base/_page.html' %}
                         {% endif %} 
                 </div>
         </div>
-</div> 
+</div>   

@@ -6,6 +6,7 @@ from django.views.generic.edit import CreateView
 from django.views.generic.list import MultipleObjectMixin
 from accounts.forms import CustomUserCreateForm
 from base.base_admin_permissions import BaseAdminUsersAd
+from django.views.generic import TemplateView 
 from django.views.generic import DetailView, UpdateView, ListView 
 from perfil.models import Network, Profile   
 from rest_framework import viewsets
@@ -17,12 +18,16 @@ from perfil.serializers import NetworkSerializer, ProfileSerializer
 
 class ProfileViewSet(viewsets.ModelViewSet): 
         queryset = Profile.objects.all()
-        serializer_class = ProfileSerializer 
-
+        serializer_class = ProfileSerializer  
+        
 class NetworkViewSet(viewsets.ModelViewSet): 
         queryset = Network.objects.all()
         serializer_class = NetworkSerializer 
-    
+
+
+class ConfigView(TemplateView):
+    template_name = "config/config.html"
+ 
 class ProfileView(DetailView):
         model = CustomUser
         template_name = "profile/profile.html"
@@ -48,6 +53,8 @@ class ProfileView(DetailView):
                         context['page_obj'] = Paginator(Post.objects.all().filter(author=self.object, is_activate__exact=True), 6).get_page(page)
                         print("Todos os filtros !!!") 
                 return self.render_to_response(context) 
+
+
 
 class ProfileEditView(UpdateView):
         model = Profile
@@ -91,7 +98,9 @@ class ProfileEditView(UpdateView):
                         network.save()
                 messages.success(self.request, 'Alterações salva com sucesso!!!')
                 return redirect(reverse_lazy('profile:edit-profile'))
- 
+
+
+
 class EditPhotoProfile(UpdateView):
         model = Profile
         template_name = "profile/profile.html"
@@ -106,9 +115,11 @@ class EditPhotoProfile(UpdateView):
                 messages.success(self.request, 'Imagem de perfil atualizada com sucesso!!!')
                 return reverse_lazy('profile:user-profile', args=[self.request.user.user_name])
 
+
+
 class UserListView(BaseAdminUsersAd,ListView):
         model = Profile
-        template_name = 'profile/usuarios.html'  
+        template_name = 'config/usuarios.html'  
         context_object_name = 'profile_list' 
         
         def get_queryset(self):      
@@ -122,5 +133,5 @@ class UserListView(BaseAdminUsersAd,ListView):
 class UserCreateView(CreateView):
         model = CustomUser
         form_class = CustomUserCreateForm
-        template_name = 'profile/add-user.html'
+        template_name = 'config/add-user.html'
         success_url = reverse_lazy('profile:users-profile')

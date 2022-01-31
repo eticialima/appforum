@@ -13,8 +13,7 @@
                         <li><a href="#">Contato</a></li> 
                         <li><button class=" btn-default btn-red d-flex" onclick="location.href='{% url 'post-create' %}'"><i class="fa fa-plus mx-2"></i> Perguntar</button></li>
                         <li>
-                                {% if user.is_authenticated %}
-                          
+                                {% if user.is_authenticated %} 
                                 <div class="action">
                                         <div class="profile" onclick="menuToggle();">
                                                 {% if user.profile.image %}
@@ -30,12 +29,10 @@
                                                 {% endif %}
                                         </div>
 
-                                        <div class="menu text-start lh-lg">
-                                                <div>
-                                                        <a href="{% url 'profile:user-profile' user.user_name %}" class="link-secondary">Meu Perfil</a> 
-                                                        <button class=" btn-default btn-red d-flex" onclick="location.href='{% url 'accounts:logout' %}'">Logout</button>
-                                                     
-                                                </div>
+                                        <div class="menu text-start lh-lg"> 
+                                                <a href="{% url 'profile:user-profile' user.user_name %}" class="link-secondary">Meu Perfil</a> 
+                                                <a href="{% url 'profile:config' %}" class="link-secondary">Configurações</a> 
+                                                <button class=" btn-default btn-red d-flex" onclick="location.href='{% url 'accounts:logout' %}'">Logout</button> 
                                         </div>
                                 </div>
                                 {% else %}
@@ -57,6 +54,7 @@
                         {% if user.is_authenticated %} 
                         <li><a href="#">{{ user.user_name }}</a></li> 
                         <li><a href="{% url 'profile:user-profile' user.user_name %}">Meu Perfil</a></li> 
+                        <li><a href="{% url 'profile:config' %}">Configurações</a></li>
                         <li><button class=" btn-default btn-red d-flex" onclick="location.href='{% url 'accounts:logout' %}'">Logout</button></li> 
                         {% else %} 
                         <button class=" btn-default btn-red d-flex" onclick="location.href='{% url 'accounts:login' %}'">Login</button></li>
