@@ -1,7 +1,7 @@
-SECRET_KEY=)ezt#(iy%ffaiz%jmrfbtij^ca+u($y350f%gbrlo=^q^o8azd
+SECRET_KEY= Sua Key sem aspas
 DEBUG=True
 SUPER_USER=ADMIN
-EMAIL= br.leticia@hotmail.com
+EMAIL= seu email
 
 NAME_DB=db.sqlite3
 USER_DB=root

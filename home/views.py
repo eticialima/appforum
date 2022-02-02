@@ -10,7 +10,7 @@ from home.forms import SocialCommentForm
 class HomeView(ListView):
         model = Post
         template_name = 'home/home.html'
-        paginate_by = 8
+        paginate_by = 7
        
         def get_queryset(self):
                 title = self.request.GET.get('title')
