@@ -1,11 +1,11 @@
-{% extends 'base/_base_home.html' %}
-{% block title %}Alterar Usuário{% endblock %}
-{% load widget_tweaks %}
+{% extends 'config/config.html' %}
+{% block title %}Usuários{% endblock %}
 {% load static %}
-{% block body_home %}  
+{% load widget_tweaks %}
+{% block config %} 
 <div class="container box">
         <div class="row">
-                <div class="col-md-6 form-signin text-center lead">
+                <div class="col form-signin text-center lead">
                         <h4>Configurações do Usuário</h4>
                         <form id="mainchange" method="post" autocomplete="off" enctype="multipart/form-data">
                                 {% csrf_token %}

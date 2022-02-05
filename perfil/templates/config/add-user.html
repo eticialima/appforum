@@ -1,8 +1,8 @@
 {% extends 'config/config.html' %}
 {% block title %}Usuários{% endblock %}
 {% load static %}
-{% block config %}
-<div class="text-center">
+{% block config %} 
+<div class="container box">
     <div class="form-signup"> 
         <h2>Cadastrar Novo Usuario</h2> 
         <form method="POST" action="{% url 'profile:usernew' %}" autocomplete="off" enctype="multipart/form-data">

@@ -38,9 +38,9 @@ class UserDelete(BaseAdminUsersAd, DeleteView):
         success_url = reverse_lazy('profile:users-profile')
         template_name = 'accounts/user-delete.html'
 
-        def get_success_url(self):
-                messages.success(self.request, self.success_message)
-                return reverse('profile:users-profile')
+        # def get_success_url(self):
+        #         messages.success(self.request, self.success_message)
+        #         return reverse('profile:users-profile')
 
 class PasswordChange(SuccessMessageMixin, PasswordChangeView):
         template_name = 'accounts/password-change.html'

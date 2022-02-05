@@ -1,5 +1,7 @@
-{% extends 'base/_base_home.html' %}
-{% block body_home %} 
+{% extends 'config/config.html' %}
+{% block title %}Usuários{% endblock %}
+{% load static %} 
+{% block config %}
 <div class="container box">
         <div class="row">
                 <div class="col-md-6 form-signin text-center lead">
@@ -9,8 +11,7 @@
                                 {% csrf_token %}
                                 <div class="form-group">
                                         <button type="submit" class="btn-default btn-red" name="btn_cadastro_canal">Sim</button>
-                                        <button class="btn-default btn-red" onclick="location.href='{% url 'profile:users-profile' %}'">Cancelar</button> 
-                                </div>
+                                 </div>
                         </form>
                 </div>
         </div>

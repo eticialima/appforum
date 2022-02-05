@@ -8,17 +8,17 @@
                         <div class="p-3 bg-light">
                                 <div class="text-center">
                                         <h5>Configurações</h5> 
-                                </div>                
+                                </div> 
+                                <div class="col mb-2 py-1">
+                                        <a href="{%  url 'post' %}">
+                                                <button class="btn-default btn-red" type="button">Todas as Perguntas</button>
+                                        </a>
+                                </div>
                                 <div class="col mb-2 py-1">
                                         <a href="{%  url 'post' %}">
                                                 <button class="btn-default btn-red" type="button">Perguntas Desativadas</button>
                                         </a> 
-                                </div>  
-                                <div class="col mb-2 py-1">
-                                        <a href="{%  url 'post' %}">
-                                                <button class="btn-default btn-red" type="button">Perguntas Desativadas</button>
-                                        </a>
-                                </div>
+                                </div>   
                                 <div class="col mb-2 py-1">
                                         <a href="{%  url 'profile:users-profile' %}">
                                                 <button class="btn-default btn-red" type="button">Usúarios</button>
@@ -49,6 +49,7 @@
 
                         </div>
                         {% block config %}
+                        <h2>Selecione um item do menu</h2>
                         {% endblock %}
                 </div>
         </div>
