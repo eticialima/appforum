@@ -9,14 +9,14 @@ from accounts.models import CustomUser
 
 
 class Category(models.Model):
-    name = models.CharField('Category', max_length=100)
+        name = models.CharField('Category', max_length=100)
 
-    def __str__(self):
-        return self.name
+        def __str__(self):
+                return self.name
 
-    class Meta:
-        verbose_name = "Category"
-        verbose_name_plural = verbose_name
+        class Meta:
+                verbose_name = "Category"
+                verbose_name_plural = verbose_name
 
 
 class Post(models.Model):
@@ -45,7 +45,7 @@ class Post(models.Model):
                 self.save()
 
         def __str__(self):
-            return "{} ({})".format(self.title, self.author)
+                return "{} ({})".format(self.title, self.author)
 
 
 class SocialComment(models.Model):

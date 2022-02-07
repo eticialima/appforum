@@ -16,8 +16,10 @@ from dotenv import load_dotenv, find_dotenv
 from django.contrib.messages import constants as messages 
 from corsheaders.defaults import default_headers
 from django.conf.urls.static import static
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 #BASE_DIR = Path(__file__).resolve().parent.parent
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
@@ -37,7 +39,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 
 CORS_ALLOW_HEADERS = list(default_headers) + [
-    'X-Register',
+        'X-Register',
 ]
 
 # CORS Config
@@ -48,101 +50,101 @@ CORS_ALLOW_CREDENTIALS = False
 # SSL and Cookies
 # ----- Production ----- #
 if not DEBUG:
-    SECURE_SSL_REDIRECT = True
-    ADMINS = [(config('SUPER_USER'), config('EMAIL'))]
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
+        SECURE_SSL_REDIRECT = True
+        ADMINS = [(config('SUPER_USER'), config('EMAIL'))]
+        SESSION_COOKIE_SECURE = True
+        CSRF_COOKIE_SECURE = True
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
 
-    # --- 3pack --- #
-    'rest_framework',
-    'corsheaders',
-    'widget_tweaks',
-    'taggit',
+        # --- 3pack --- #
+        'rest_framework',
+        'corsheaders',
+        'widget_tweaks',
+        'taggit',
 
-    # --- Accounts --- #
-    'accounts',
+        # --- Accounts --- #
+        'accounts',
 
-    # --- My Apps ---#
-    'base',
-    'post',
-    'home',
-    'perfil',
+        # --- My Apps ---#
+        'base',
+        'post',
+        'home',
+        'perfil',
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    # 'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django_session_timeout.middleware.SessionTimeoutMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+        'django.middleware.security.SecurityMiddleware',
+        'corsheaders.middleware.CorsMiddleware',
+        # 'whitenoise.middleware.WhiteNoiseMiddleware',
+        'django.contrib.sessions.middleware.SessionMiddleware',
+        'django_session_timeout.middleware.SessionTimeoutMiddleware',
+        'django.middleware.common.CommonMiddleware',
+        'django.middleware.csrf.CsrfViewMiddleware',
+        'django.contrib.auth.middleware.AuthenticationMiddleware',
+        'django.contrib.messages.middleware.MessageMiddleware',
+        'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = 'portal.urls'
 
 TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
+        {
+                'BACKEND': 'django.template.backends.django.DjangoTemplates',
+                'DIRS': [],
+                'APP_DIRS': True,
+                'OPTIONS': {
+                        'context_processors': [
+                                'django.template.context_processors.debug',
+                                'django.template.context_processors.request',
+                                'django.contrib.auth.context_processors.auth',
+                                'django.contrib.messages.context_processors.messages',
+                    ],
+                },
+        },  
 ]
 
 WSGI_APPLICATION = 'portal.wsgi.application'
  
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, config('NAME_DB')),
-    }
+        'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': os.path.join(BASE_DIR, config('NAME_DB')),
+        }
 }
 
 REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+        # Use Django's standard `django.contrib.auth` permissions,
+        # or allow read-only access for unauthenticated users.
+        'DEFAULT_PERMISSION_CLASSES': [
+                'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        ]
 }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+        {
+                'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        },
+        {
+                'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        },
+        {
+                'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        },
+        {
+                'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        },
 ]
 
 
@@ -195,7 +197,7 @@ LOGOUT_REDIRECT_URL = '/'
 
 # --- development --- #
 if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+        EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
  
 # --- Production --- #
 # if not DEBUG:
@@ -209,9 +211,9 @@ if DEBUG:
 
 
 MESSAGE_TAGS = {
-    messages.DEBUG: 'alert-info',
-    messages.INFO: 'alert-info',
-    messages.SUCCESS: 'alert-success',
-    messages.WARNING: 'alert-warning',
-    messages.ERROR: 'alert-danger',
+        messages.DEBUG: 'alert-info',
+        messages.INFO: 'alert-info',
+        messages.SUCCESS: 'alert-success',
+        messages.WARNING: 'alert-warning',
+        messages.ERROR: 'alert-danger',
 }

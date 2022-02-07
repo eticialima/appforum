@@ -1,6 +1,5 @@
 from django.contrib import admin
-from perfil.models import Profile, Network, IconSocialNetwork
+from perfil.models import Profile, Network 
 
 admin.site.register(Profile) 
-admin.site.register(Network)
-admin.site.register(IconSocialNetwork)
+admin.site.register(Network) 

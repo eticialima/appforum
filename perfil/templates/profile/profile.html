@@ -2,9 +2,7 @@
 {% load widget_tweaks %}
 {% load static %}
 {% block body_home %}
-
 {% if not perfil.profile.user.is_active %}
-
 <section class="container-sm py-5">
         <div class="bg-light p-4 lead">
                 <div class="row">
@@ -18,15 +16,10 @@
                 </div>
         </div>
 </section>
-
-
 {% else %}
-
-
 <section class="container-box row bg-light">
         <div class="d-flex align-items-center">
                 <div class="flex-shrink-0  p-5"> 
-
                         {% if perfil.profile.image %}
                         <img id="preview" class="rounded mx-auto d-block" src="{{perfil.profile.image.thumb.url}}" alt="{{perfil.first_name}}" width="200" />
                         {% else %}
@@ -45,42 +38,31 @@
                 </div>
 
                 <div class="flex-grow-1 ms-3">
-
                         <div class="d-flex justify-content-between align-items-center">
                                 <div class="d-flex flex-row align-items-center">
-
                                         <h1>{{perfil.first_name}} {{perfil.last_name}}</h1>
-
                                 </div>
-
                                 <form method="POST" action="{% url 'profile:like-profile' perfil.pk %}">
                                         {% csrf_token %}
                                         <input type="hidden" name="next" value="{{request.path}}">
                                         <button type="submit" class="btn"><i class='fas fa-heart fa-2x s-label'></i><span class="h3 mx-2 s-label">{{perfil.profile.likes.all.count}}</span></button>
                                 </form>
                         </div>
-
                         <p>Username: {{perfil.user_name}}</p>
-
                         <div class="title-container">
                                 <h5>Sobre:</h5>
                         </div>
-
                         <p>{{ perfil.profile.description }}</p>
-
                         <div class="row">
                                 <div class="col-6">
                                         <h5>Atuo como: {{perfil.profile.occupation}}</h5>
                                         <p>Cidade: {{perfil.profile.city}} {{perfil.profile.country}}</p>
                                 </div>
-
-                                <div class="col-6">
-
-                                        <h5>Redes Sociais:</h5>
-
+                                <div class="col-6"> 
+                                        <h5>Redes Sociais:</h5> 
                                         {% for n in perfil.network.all %}
-                                        {% if n.url != '' and n.url != 'None' %}
-                                        <a href="{{n.url}}" target="_blank" class="btn"><img src="{{n.name.icon.url}}" alt="{{n.name.name}}" width="25" height="25"></a>
+                                        {% if n.url != '' and n.url != 'None' %} 
+                                        <a href="{{n.url}}" target="_blank" class="s-label"><i class="fab fa-{{n.name}} mx-2"></i></a>
                                         {% endif %}
                                         {% endfor %} 
                                 </div>
@@ -100,66 +82,41 @@
                 </div>
         </div>
 </section>
-
 <hr>
-
 <section class="row">
         <div class=" container-box col-md-3 p-3 bg-light">
-
                 <h2>Perguntas</h2>
-
                 <span class="fw-bold py-3">Titulo: </span>
-
                 <form action="{% url 'profile:user-profile' perfil.profile.user.user_name %}" method="get">
                         <input name="title" type="text" value="{{request.GET.title}}" class="form-control" placeholder="Pesquisar...">
                 </form>
-
                 <br>
-
                 {% if perfil == request.user and request.user.is_authenticated %}
-                <a href="{%  url 'profile:config' %}">
-                        <button class="btn-default btn-red" type="button">Configurações</button>
-                </a>
-                {% endif %}
-
-
+                <a href="{%  url 'profile:config' %}"><button class="btn-default btn-red" type="button">Configurações</button></a>
+                {% endif %} 
                 {% if request.GET.title %}
-                <a href="{%  url 'profile:user-profile' perfil.profile.user.user_name %}">
-                        <button class="btn-default btn-red" type="button">Reset</button>
-                </a>
+                <a href="{%  url 'profile:user-profile' perfil.profile.user.user_name %}"><button class="btn-default btn-red" type="button">Reset</button></a>
                 {% endif %}
-
         </div>
-
         <div class="col-md-9"> 
                 {% for post in page_obj %}
-                
                 <div class="container-box mt-2">
                         <div class="d-flex justify-content-end align-items-center">
                                 {% if perfil == request.user and request.user.is_authenticated %}
                                 <a class="s-label" href="{%  url 'post-update' post.pk %}"><i class="fas fa-cog fa-2x mx-2"></i></a>
                                 {% endif %}
                         </div>
-                
-                
                         {% include 'post/_card.html' %}
-                
                 </div>
-                
                 {% endfor %}
-                
                 <div class="p-4">
                         {% if page_obj.paginator.num_pages > 1 %}
                         {% include 'base/_page.html' %}
                         {% endif %}
                 </div>
-
-        </div> 
-        
+        </div>
 </section>
-{% endif %}
-
-
+{% endif %} 
 <script>
         $("#image").change(function (event) {
                 readURL(this);

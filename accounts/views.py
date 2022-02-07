@@ -67,6 +67,5 @@ class PasswordResetComplete(SuccessMessageMixin, PasswordResetCompleteView):
                 return redirect('accounts:login') 
     
     
-    
 class TimeOutView(TemplateView):
         template_name = 'timeout/timeout.html'

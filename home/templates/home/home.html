@@ -4,9 +4,7 @@
 <div class="row"> 
         <div class="col-md-8">  
                 {% if request.GET.title %}
-                <a href="{%  url 'home:home' %}">
-                        <button class="btn-default btn-red" type="button">Reset</button>
-                </a>
+                <a href="{%  url 'home:home' %}"><button class="btn-default btn-red" type="button">Reset</button></a>
                 {% endif %}
         
                 <div class="row">
@@ -18,9 +16,7 @@
                 {% endif %}
                 {% endfor %}
                 </div>
-        
                 {% include 'base/_page.html' %}
-              
         </div>
         <div class="col-md-4"> 
                 {% include 'home/details/right.html' %} 

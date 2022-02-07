@@ -7,26 +7,17 @@ from accounts.models import CustomUser
 
 
 class SocialNetwork(models.TextChoices):
-    YOUTUBE = 'YOUTUBE', 'youtube'
-    WHATSAPP = 'WHATSAPP', 'whatsapp'
-    FACEBOOK = 'FACEBOOK', 'facebook'
-    INSTAGRAM = 'INSTAGRAM', 'instagram'
-    TWITTER = 'TWITTER', 'twitter'
-    PINTEREST = 'PINTEREST', 'pinterest'
-    SNAPCHAT = 'SNAPCHAT', 'snapchat'
-    TIKTOK = 'TIKTOK', 'tiktok'
-    DISCORD = 'DISCORD', 'discord'
-    GITHUB = 'GITHUB', 'Github'
-
-class IconSocialNetwork(models.Model):
-        name = models.CharField( max_length=10, choices=SocialNetwork.choices, blank=True, null=True)
-        icon = models.ImageField(upload_to='icon', blank=True, null=True)
-
-        def __str__(self):
-            return self.name 
-  
-            
-
+        YOUTUBE = 'youtube', 'youtube'
+        WHATSAPP = 'whatsapp', 'whatsapp'
+        FACEBOOK = 'facebook', 'facebook'
+        INSTAGRAM = 'instagram', 'instagram'
+        TWITTER = 'twitter', 'twitter'
+        PINTEREST = 'pinterest', 'pinterest'
+        SNAPCHAT = 'snapchat', 'snapchat'
+        TIKTOK = 'tiktok', 'tiktok'
+        DISCORD = 'discord', 'discord'
+        GITHUB = 'github', 'github'
+ 
 class Profile(models.Model):   
         user = models.OneToOneField(CustomUser,  on_delete=models.CASCADE, related_name='profile') 
         image = StdImageField('Image', upload_to='profile', variations={'thumb': (500, 500, True)}, delete_orphans = True, blank=True)  
@@ -52,7 +43,7 @@ class Profile(models.Model):
 
 class Network(models.Model):
         user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='network', blank=True, null=True)  
-        name = models.ForeignKey(IconSocialNetwork, on_delete=models.CASCADE, related_name="icon_social_network", blank=True, null=True)
+        name = models.CharField(max_length=10, choices=SocialNetwork.choices, blank=True, null=True) 
         url = models.URLField(blank=True, null=True)
 
         def __str__(self):
@@ -64,11 +55,11 @@ class Network(models.Model):
                 ordering = ['user']
 
         @receiver(post_save, sender=CustomUser)
-        def create_network(sender, ** kwargs):
-                print("create_network")
-                if kwargs.get('created', False): 
-                        for i in IconSocialNetwork: 
-                                Network.objects.create(name=i.id, user=kwargs['instance'])
+        def create_network(sender, **kwargs):  
+                if kwargs.get('created', False):    
+                        for i in SocialNetwork:
+                                print(i)
+                                Network.objects.create(name=i, user=kwargs['instance']) 
          
                                 
                                 

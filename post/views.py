@@ -3,7 +3,7 @@ from django.contrib import messages
 from base.base_admin_permissions import BaseAdminUsersAd, BaseAdminUsersall
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic import ListView 
-from post.models import Category, Post  
+from post.models import Post  
 from post.forms import PostForm 
 from accounts.models import CustomUser
 from django.shortcuts import render
@@ -48,6 +48,7 @@ class TodosPostView(BaseAdminUsersAd, ListView):
                         post_list = self.model.objects.all()
                 return post_list
  
+ 
 class PostCreate(BaseAdminUsersall, CreateView):
         model = Post
         form_class = PostForm
@@ -88,6 +89,7 @@ class PostUpdate(BaseAdminUsersall, UpdateView):
         def get_success_url(self):  
                 messages.success(self.request, 'Post atualizada com sucesso!!!')
                 return reverse_lazy('profile:user-profile', args=[self.request.user.user_name])
+
 
 class PostDelete(BaseAdminUsersall, DeleteView):
         model = Post

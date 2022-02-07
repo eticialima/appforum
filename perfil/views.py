@@ -88,7 +88,6 @@ class ProfileEditView(UpdateView):
                 return redirect(reverse_lazy('profile:edit-profile'))
 
 
-
 class EditPhotoProfile(UpdateView):
         model = Profile
         template_name = "profile/profile.html"
@@ -125,7 +124,6 @@ class ProfileAddLike(LoginRequiredMixin, View):
                 return HttpResponseRedirect(next)
         
 
-
 class ConfigView(TemplateView):
         template_name = "config/_config.html"
 
@@ -148,6 +146,7 @@ class UserListView(BaseAdminUsersAd, ListView):
                 else:
                         profile_list = Profile.objects.filter() 
                 return profile_list   
+    
     
 class UserCreateView(CreateView):
         model = CustomUser
