@@ -143,6 +143,7 @@ class CommentReplyView(LoginRequiredMixin, View):
         return redirect('home:post-detail', pk=post_pk)
 
 
+
 class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model=SocialComment
     template_name="home/comments/comment_delete.html"

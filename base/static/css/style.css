@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Open+Sans&family=Roboto:wght@400;500;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 
+/* Base styles */
 * {
         padding: 0;
         margin: 0;
@@ -18,105 +19,47 @@ a {
 }
 
 span {
-        font-size: 12px
-}
+        font-size: 10px
+} 
 
-.box {
-        margin-top: 50px;
-}
+/* Tela de cadastro Sign/Login */
+.myForm {
+        min-width: 500px;
+        position: absolute;
+        text-align: center;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); 
+        border-radius: 30px;
+        background-color: #fff;
+        box-shadow: 0px 2px 10px rgb(0 0 0 / 8%);
+} 
 
-.form-signin { 
-        padding: 10px;
+ 
+
+.container-box { 
+        padding: 20px;
         margin: auto;
         border-radius: 30px;
         background-color: #fff;
         box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
 }
  
-.box-container-right {
-        width: 100%;
-        padding: 20px;
-        margin: auto;
-        border-radius: 20px;
-        background-color: #fff;
-        box-shadow: 0px 2px 10px rgb(0 0 0 / 8%);
-}
-
- 
-/* flex box  */ 
-.box-container {
-        width: 100%;
-        display: flex;
-        padding-left: 0.2em;
-        flex-direction: column;
-        padding-bottom: 0.7em;
-        justify-content: space-between;
-} 
-
-.box-index-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-}
-
-.box-icon {
-        width: 20%;
-        display: flex;
-        padding: 0.4em;
-        text-align: center;
-        flex-direction: column;
-}
-
-.box-category {
-        display: flex;
-        align-items: flex-end;
-}
-
-.box-user {
-        display: flex;
-        margin-top: 0.7em;
-        margin-right: 2em;
-        align-items: center;
-}
-
-.box-user,
-.box-buttom,
+  
 .s-label,
 a {
         text-decoration: none!important;
         color: rgb(215, 127, 161);
 }
-
-.box-user,
-.box-buttom,
+ 
 .s-label:hover,
 a:hover {
         text-decoration: none;
         color: rgb(121, 64, 159);
 } 
-
-/* detail post */
-.box-1 {
-         display: flex;
-         align-items: center;
- }
-
- .box-buttom {
-         display: flex;
-         flex-wrap: wrap;
-         margin-right: 2em;
-         align-items: center;
- }
-  
-
-.box-index-icon {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: row;
-        flex-wrap: wrap
-} 
  
+
+  
 
 /* Page Configuration */
 .fundo {
@@ -150,11 +93,10 @@ a:hover {
 } 
 
 .label-input-photo {
-        padding: 15px 20px;
+        padding: 5px 90px;
         background-color: rgb(215, 127, 161);
         color: #fff;
-        cursor: pointer;
-        border-radius: 10rem;
+        cursor: pointer; 
         transition: all .3s ease-in-out;
 }
 
@@ -163,21 +105,7 @@ a:hover {
         transition: 0.1;
 }
 
-
-/* Cards Configuration */
-.card-box {
-        display: flex;
-        box-shadow: 0px 0px 1px 2px rgb(140, 147, 170) !important;
-        background-color: rgb(255, 255, 255);
-        border-radius: 20px;
-        transition: box-shadow 0.25s, -webkit-box-shadow 0.25s;
-        padding: 24px;
-        margin: 0.5rem 0 1rem 0;
-}
-
-.card-box:hover {
-        box-shadow: 0px 0px 0px 4px rgba(236, 236, 236, 0.9) !important;
-}
+ 
 
 /* Buttons Configuration */
 .btn-default { 
@@ -286,4 +214,9 @@ textarea:focus {
                 width: 22%;
                 padding-right: 0.2em;
         }
+
+        .myForm {
+                min-width: 90%;
+        }
+  
 }

@@ -1,21 +1,15 @@
 {% extends 'base/_base_home.html' %}
 {% load static %}
 {% load widget_tweaks %}
-{% block body_home %} 
-<div class="container py-5">
-        <div class="row g-5">
-                <div class="col-md-8">  
-                        <article class="blog-post">
-                                {% include 'home/menu-center/center.html' %}
-                        </article>
-                        <br>
-                        <article class="blog-post">
-                                {% include 'home/comments/comments.html' %}
-                        </article> 
-                </div>
-                <div class="col-md-4">
-                        {% include 'home/menu-right/right.html' %} 
-                </div>
+{% block body_home %}  
+<div class="row"> 
+        <div class="col-md-8">   
+        {% include 'home/details/center.html' %} 
+        <br>
+        {% include 'home/details/comments.html' %} 
         </div>
-</div>  
+        <div class="col-md-4">
+                {% include 'home/details/right.html' %} 
+        </div>
+</div> 
 {% endblock %}

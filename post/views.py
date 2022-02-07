@@ -1,6 +1,6 @@
 from django.urls import reverse_lazy
 from django.contrib import messages
-from base.base_admin_permissions import BaseAdminUsersall
+from base.base_admin_permissions import BaseAdminUsersAd, BaseAdminUsersall
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic import ListView 
 from post.models import Category, Post  
@@ -15,15 +15,39 @@ class PostView(BaseAdminUsersall, ListView):
         template_name = 'post/post.html'
         context_object_name = "post_disable"
         
+        def get_queryset(self): 
+                query = self.request.GET.get('title')
+                query2 = self.request.GET.get('is_activate')   
+                if query:
+                        post_list = self.model.objects.filter(title__icontains=query)
+                        return post_list
+                if query2:
+                        post_list = self.model.objects.filter(is_activate__icontains=query2)
+                        return post_list
+                else: 
+                        post_list = self.model.objects.all()
+                return post_list
+                
+
+class TodosPostView(BaseAdminUsersAd, ListView):
+        model = Post
+        template_name = 'post/post.html'
+        context_object_name = "post_todos"
+
         def get_queryset(self):
-                title = self.request.GET.get('title')
-                if title:
-                        post_list = self.model.objects.filter(title__icontains=title)
+                query = self.request.GET.get('title')
+                query2 = self.request.GET.get('is_activate')
+                if query:
+                        post_list = self.model.objects.filter(
+                                title__icontains=query)
+                        return post_list
+                if query2:
+                        post_list = self.model.objects.filter(is_activate__icontains=query2)
+                        return post_list
                 else:
                         post_list = self.model.objects.all()
                 return post_list
-
-
+ 
 class PostCreate(BaseAdminUsersall, CreateView):
         model = Post
         form_class = PostForm
@@ -38,8 +62,7 @@ class PostCreate(BaseAdminUsersall, CreateView):
 
         def post(self, request, *args, **kwargs):
                 user_pk = request.user
-                user = CustomUser.objects.filter(username=user_pk)
-                print(user)
+                user = CustomUser.objects.filter(username=user_pk) 
                 form = PostForm(request.POST, request.FILES) 
                 if 'btn_adicionar':
                         if form.is_valid():

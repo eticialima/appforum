@@ -13,7 +13,7 @@ import os
 from pathlib import Path
 from decouple import config
 from dotenv import load_dotenv, find_dotenv
-
+from django.contrib.messages import constants as messages 
 from corsheaders.defaults import default_headers
 from django.conf.urls.static import static
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -206,4 +206,12 @@ if DEBUG:
 # EMAIL_USE_TLS = True
 # DEFAULT_FROM_EMAIL = 'email-here'
 # SERVER_EMAIL = DEFAULT_FROM_EMAIL
- 
+
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}

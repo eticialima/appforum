@@ -1,32 +1,20 @@
+import re
 from django.core.paginator import Paginator
+from django.http import HttpResponseRedirect 
 from django.shortcuts import redirect
 from django.urls import reverse_lazy 
 from django.contrib import messages
-from django.views.generic.edit import CreateView
-from django.views.generic.list import MultipleObjectMixin
+from django.views.generic.base import View  
+from django.views.generic.edit import CreateView 
 from accounts.forms import CustomUserCreateForm
-from base.base_admin_permissions import BaseAdminUsersAd
-from django.views.generic import TemplateView 
-from django.views.generic import DetailView, UpdateView, ListView 
+from django.contrib.auth.mixins import LoginRequiredMixin
+from base.base_admin_permissions import BaseAdminUsersAd 
+from django.views.generic import TemplateView, DetailView, UpdateView, ListView 
 from perfil.models import Network, Profile   
 from rest_framework import viewsets
-from accounts.models import CustomUser
-from perfil.models import Profile
-from post.models import Post
-from perfil.serializers import NetworkSerializer, ProfileSerializer  
+from accounts.models import CustomUser 
+from post.models import Post 
 
-
-class ProfileViewSet(viewsets.ModelViewSet): 
-        queryset = Profile.objects.all()
-        serializer_class = ProfileSerializer  
-        
-class NetworkViewSet(viewsets.ModelViewSet): 
-        queryset = Network.objects.all()
-        serializer_class = NetworkSerializer 
-
-
-class ConfigView(TemplateView):
-    template_name = "config/config.html"
  
 class ProfileView(DetailView):
         model = CustomUser
@@ -58,7 +46,7 @@ class ProfileView(DetailView):
 
 class ProfileEditView(UpdateView):
         model = Profile
-        template_name = "profile/edit-profile.html"
+        template_name = "config/edit-profile.html"
         context_object_name = "profile"
         object = None
         fields = "__all__"
@@ -116,16 +104,47 @@ class EditPhotoProfile(UpdateView):
                 return reverse_lazy('profile:user-profile', args=[self.request.user.user_name])
 
 
+class ProfileAddLike(LoginRequiredMixin, View):
+        slug_field = "username"
+        slug_url_kwarg = "username"
 
-class UserListView(BaseAdminUsersAd,ListView):
+        def post(self, request, pk, *args, **kwargs):
+                profile = Profile.objects.get(pk=pk)
+                is_like = False
+                for like in profile.likes.all():
+                        if like == request.user:
+                                is_like = True
+                                break
+                if not is_like:
+                        profile.likes.add(request.user)
+
+                if is_like:
+                        profile.likes.remove(request.user)
+
+                next = request.POST.get('next', '/')
+                return HttpResponseRedirect(next)
+        
+
+
+class ConfigView(TemplateView):
+        template_name = "config/_config.html"
+
+
+class UserListView(BaseAdminUsersAd, ListView):
         model = Profile
         template_name = 'config/usuarios.html'  
         context_object_name = 'profile_list' 
         
         def get_queryset(self):      
                 user_name = self.request.GET.get('user_name') 
+                is_active = self.request.GET.get('is_active')
+                
                 if user_name:  
                         profile_list = Profile.objects.filter(user__user_name__icontains=user_name) 
+                        return profile_list
+                if is_active:
+                        profile_list = Profile.objects.filter(user__is_active=is_active)        
+                        return profile_list
                 else:
                         profile_list = Profile.objects.filter() 
                 return profile_list   

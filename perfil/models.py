@@ -1,9 +1,31 @@
+from re import M
 from django.db.models.signals import post_save
 from django.dispatch import receiver 
 from django.db import models 
 from stdimage.models import StdImageField    
-from accounts.models import CustomUser
-from perfil.choices import SocialNetwork
+from accounts.models import CustomUser 
+
+
+class SocialNetwork(models.TextChoices):
+    YOUTUBE = 'YOUTUBE', 'youtube'
+    WHATSAPP = 'WHATSAPP', 'whatsapp'
+    FACEBOOK = 'FACEBOOK', 'facebook'
+    INSTAGRAM = 'INSTAGRAM', 'instagram'
+    TWITTER = 'TWITTER', 'twitter'
+    PINTEREST = 'PINTEREST', 'pinterest'
+    SNAPCHAT = 'SNAPCHAT', 'snapchat'
+    TIKTOK = 'TIKTOK', 'tiktok'
+    DISCORD = 'DISCORD', 'discord'
+    GITHUB = 'GITHUB', 'Github'
+
+class IconSocialNetwork(models.Model):
+        name = models.CharField( max_length=10, choices=SocialNetwork.choices, blank=True, null=True)
+        icon = models.ImageField(upload_to='icon', blank=True, null=True)
+
+        def __str__(self):
+            return self.name 
+  
+            
 
 class Profile(models.Model):   
         user = models.OneToOneField(CustomUser,  on_delete=models.CASCADE, related_name='profile') 
@@ -29,8 +51,8 @@ class Profile(models.Model):
                         Profile.objects.create(user=kwargs['instance'])
 
 class Network(models.Model):
-        user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='network', blank=True, null=True) 
-        name = models.CharField(max_length=10, choices=SocialNetwork.choices, blank=True, null=True) 
+        user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='network', blank=True, null=True)  
+        name = models.ForeignKey(IconSocialNetwork, on_delete=models.CASCADE, related_name="icon_social_network", blank=True, null=True)
         url = models.URLField(blank=True, null=True)
 
         def __str__(self):
@@ -42,8 +64,13 @@ class Network(models.Model):
                 ordering = ['user']
 
         @receiver(post_save, sender=CustomUser)
-        def create_network(sender, **kwargs):  
-                if kwargs.get('created', False):   
-                        for i in SocialNetwork:
-                                Network.objects.create(name=i, user=kwargs['instance']) 
+        def create_network(sender, ** kwargs):
+                print("create_network")
+                if kwargs.get('created', False): 
+                        for i in IconSocialNetwork: 
+                                Network.objects.create(name=i.id, user=kwargs['instance'])
          
+                                
+                                
+
+       

@@ -4,27 +4,26 @@
         <nav>
                 <ul>
                         <li>
-                        <form class="d-flex" method="get" action="{% url 'home:home' %}"> 
-                                <input type="text" name="title" id="title" placeholder="Pesquisar..." class="search">
-                        </form>
-                </li>
+                                <form class="d-flex" method="get" action="{% url 'home:home' %}"> 
+                                        <input class="search" type="text" name="title" id="title" placeholder="Pesquisar...">
+                                </form>
+                        </li>
                         <li><a href="/">Inicio</a></li>
                         <li><a href="#">Sobre</a></li>
                         <li><a href="#">Contato</a></li> 
                         <li><button class=" btn-default btn-red d-flex" onclick="location.href='{% url 'post-create' %}'"><i class="fa fa-plus mx-2"></i> Perguntar</button></li>
                         <li>
+
                                 {% if user.is_authenticated %} 
                                 <div class="action">
                                         <div class="profile" onclick="menuToggle();">
                                                 {% if user.profile.image %}
                                                 <div class="circle-home">
-                                                        <img src="{{ user.profile.image.url }}" class="img-fluid"
-                                                                alt="{{ user.first_name }}" />
+                                                        <img src="{{ user.profile.image.url }}" class="img-fluid" alt="{{ user.first_name }}" />
                                                 </div>
                                                 {% else %}
                                                 <div class="circle-home">
-                                                        <img src="{% static 'images/default.png' %}" class="img-fluid"
-                                                                alt="default" />
+                                                        <img src="{% static 'images/default.png' %}" class="img-fluid" alt="default" />
                                                 </div>
                                                 {% endif %}
                                         </div>
@@ -38,6 +37,7 @@
                                 {% else %}
                                         <button class=" btn-default btn-red d-flex" onclick="location.href='{% url 'accounts:login' %}'">Login</button> 
                                 {% endif %}
+
                         </li>
                 </ul>
         </nav>
@@ -51,6 +51,7 @@
                         <li><a href="#">Sobre</a></li>
                         <li><a href="#">Contato</a></li> 
                         <br>
+
                         {% if user.is_authenticated %} 
                         <li><a href="#">{{ user.user_name }}</a></li> 
                         <li><a href="{% url 'profile:user-profile' user.user_name %}">Meu Perfil</a></li> 
@@ -59,6 +60,7 @@
                         {% else %} 
                         <button class=" btn-default btn-red d-flex" onclick="location.href='{% url 'accounts:login' %}'">Login</button></li>
                         {% endif %} 
+
                 </ul>
         </div>
 </header>
@@ -71,11 +73,8 @@
                 toggleMenu.classList.toggle('active')
         }
 </script>
-<style>
-        header a {
-                text-decoration: none;
-        }
 
+<style> 
         header {
                 background-color: rgb(17, 50, 77);
                 height: 100px;
@@ -86,6 +85,11 @@
                 flex-direction: row;
                 align-items: stretch;
         }
+
+        header a {
+                text-decoration: none;
+        }
+
 
         #brand {
                 font-weight: bold;
@@ -123,6 +127,7 @@
                 color: rgb(215, 127, 161); 
                 text-decoration: none;
         }
+
 
         #navbar-icon {
                 margin: auto 0;

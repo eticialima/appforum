@@ -1,9 +1,8 @@
- 
 {% if messages %} 
 {% for message in messages %}
-<div class="alert {{ message.tags }}" role="alert">{{ message }}</div>
+<div class="alert {{ message.tags }}" id="msg" role="alert">{{ message }}</div>
 {% endfor %} {% endif %} {% if form.non_field_errors %}
-<div class="alert alert-danger" role="alert">{{ form.non_field_errors }}</div>
+<div class="alert alert-danger" id="msg" role="alert">{{ form.non_field_errors }}</div>
 {% endif %} {% if form.errors %}
-<div class="alert alert-danger" role="alert">{{ form.errors }}</div>
-{% endif %} 
+<div class="alert alert-danger" id="msg" role="alert">{{ form.errors }}</div>
+{% endif %}  

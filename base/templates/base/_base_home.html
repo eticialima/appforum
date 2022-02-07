@@ -9,8 +9,17 @@
 
 <body> 
         {% include 'base/_navbar.html' %}
+        <div class="container py-5">
+        {% include 'base/_messages.html' %}
         {% block body_home %}
         {% endblock %}
+        </div>
 </body>
-
+<script>
+        setTimeout(function () {
+                if ($('#msg').length > 0) {
+                        $('#msg').remove();
+                }
+        }, 2000)
+</script>
 </html>

@@ -30,7 +30,7 @@ class Post(models.Model):
         is_activate = models.BooleanField('activate', default=False)
         
         category = models.ForeignKey(Category, verbose_name="Category", on_delete=models.CASCADE, null=True, blank=True)
-        tags = TaggableManager()
+        tags = TaggableManager(blank=True)
          
         views = models.PositiveIntegerField(default=0, editable=False)
         likes = models.ManyToManyField(get_user_model(), blank=True, related_name='likes')

@@ -10,14 +10,14 @@ from home.forms import SocialCommentForm
 class HomeView(ListView):
         model = Post
         template_name = 'home/home.html'
-        paginate_by = 7
+        paginate_by = 5
        
         def get_queryset(self):
                 title = self.request.GET.get('title')
                 if title:
-                        post_list = self.model.objects.filter(title__icontains=title, author__is_active__exact=True).order_by('?')
+                        post_list = self.model.objects.filter(title__icontains=title, author__is_active__exact=True) 
                 else:
-                        post_list = self.model.objects.filter(author__is_active__exact=True).order_by('?')
+                        post_list = self.model.objects.filter(author__is_active__exact=True) 
                 return post_list
 
         def get_context_data(self, **kwargs): 
