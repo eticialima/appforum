@@ -5,7 +5,7 @@
 ## This project was made with:
 
 * [Python 3.10.2](https://www.python.org/)
-* [Django 3.2.11](https://www.djangoproject.com/)  
+* [Django 4.1](https://www.djangoproject.com/)  
 
 ## how to run the project?
 
