@@ -2,84 +2,78 @@
 {% block title %}Post{% endblock %}
 {% load static %}
 {% load widget_tweaks %}
-{% block config %}   
-<form id="post-form" class="container-box lead" method="POST" action="{% url 'post-create' %}" autocomplete="off" enctype="multipart/form-data">
-        {% csrf_token %}   
-        <br>
-        <div class="row">
-                <div class="col">
-                        <label>Titulo</label>
-                        {% render_field form.title class="form-control" type="text" %}
-                </div>
-                <br>
-                <div class="col">
-                        <label>Descrição</label>
-                        {% render_field form.desc class="form-control" type="text" rows="3" %}
-                </div>
+{% block config %}
+<form id="post-form" class="container-box lead" method="POST" action="{% url 'post-create' %}" autocomplete="off"
+    enctype="multipart/form-data">
+    {% csrf_token %}
+    <br>
+    <div class="row">
+        <div class="col">
+            <label>Titulo</label>
+            {% render_field form.title class="form-control" type="text" %}
         </div>
         <br>
-        <div class="row">
-                <div class="col">
-                        <label>Categoria</label>
-                        {% render_field form.category class="form-control form-select" id="category" name="category" %}
-                </div>
-                <br>
-                <div class="col">
-                        <label>Tags</label>
-                        <input type="text" data-role="tagsinput" class="form-control" name="tags">
-                </div>
+        <div class="col">
+            <label>Descrição</label>
+            {% render_field form.desc class="form-control" type="text" rows="3" %}
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col">
+            <label>Categoria</label>
+            {% render_field form.category class="form-control form-select" id="category" name="category" %}
         </div>
         <br>
-        <div class="row">
-                <div class="col">
-                        <label>Data de Criação</label>
-                        {% render_field form.created_date class="form-control" type="text" disabled="disabled" %}
-                </div>
-                <br>
-                <div class="col">
-                        <label>Data de Publicação</label>
-                        {% render_field form.published_date class="form-control" id="published_date" type="date" %}
-                </div>
+        <div class="col">
+            <label>Tags</label>
+            <input type="text" data-role="tagsinput" class="form-control" name="tags">
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col">
+            <label>Data de Criação</label>
+            {% render_field form.created_date class="form-control" type="text" disabled="disabled" %}
         </div>
         <br>
-        
-        <label>Publicação Ativa ?</label>
-        {% render_field form.is_activate class="form-check-input" id="is_activate" name="is_activate" %}
-        <br>
-        <br>
-        <br>
-        <div class="row">
-                <label>Pode upar 3 arquivos até 500M</label>
-                <div class="col">
-                        {% render_field form.files1 class="form-control form-control-sm" type="file" %}
-                        <p class="text-muted fst-italic" style="font-size:12px;">Formato suportado | Winrar | Zip | JPG | PNG |
-                        </p>
-                </div>
-                <div class="col">
-                        {% render_field form.files2 class="form-control form-control-sm" type="file" %}
-                        <p class="text-muted fst-italic" style="font-size:12px;">Formato suportado | Winrar | Zip | JPG | PNG |
-                        </p>
-                </div>
-                <div class="col">
-                        {% render_field form.files3 class="form-control form-control-sm" type="file" %}
-                        <p class="text-muted fst-italic" style="font-size:12px;">Formato suportado | Winrar | Zip | JPG | PNG |
-                        </p>
-                </div>
+        <div class="col">
+            <label>Data de Publicação</label>
+            {% render_field form.published_date class="form-control" id="published_date" type="date" %}
         </div>
-        
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button type="submit" class="btn-default btn-red" name="btn_adicionar">Criar</button>
-                <button type="button" class="mr-2 btn-default btn-red" onclick="location.href='{% url 'home:home' %}'">Voltar</button> 
+    </div>
+    <br>
+    <label>Publicação Ativa ?</label>
+    {% render_field form.is_activate class="form-check-input" id="is_activate" name="is_activate" %}
+    <br>
+    <br>
+    <br>
+    <div class="row">
+        <label>Pode upar 3 arquivos até 500M</label>
+        <div class="col">
+            {% render_field form.files1 class="form-control form-control-sm" type="file" %}
+            <p class="text-muted fst-italic" style="font-size:12px;">Formato suportado | Winrar | Zip | JPG | PNG |</p>
         </div>
-</form>   
+        <div class="col">
+            {% render_field form.files2 class="form-control form-control-sm" type="file" %}
+            <p class="text-muted fst-italic" style="font-size:12px;">Formato suportado | Winrar | Zip | JPG | PNG |</p>
+        </div>
+        <div class="col">
+            {% render_field form.files3 class="form-control form-control-sm" type="file" %}
+            <p class="text-muted fst-italic" style="font-size:12px;">Formato suportado | Winrar | Zip | JPG | PNG |</p>
+        </div>
+    </div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button type="submit" class="btn-default btn-red" name="btn_adicionar">Criar</button>
+        <button type="button" class="mr-2 btn-default btn-red" onclick="location.href='{% url 'home:home' %}'">Voltar</button>
+    </div>
+</form>
 <script>
-        // Formulario não envia campos desabilitados
-        $('#post-form').submit(function (e) {
-                $(':disabled').each(function (e) {
-                        $(this).removeAttr('disabled');
-                })
-        });
-
-    
+    // Formulario não envia campos desabilitados
+    $('#post-form').submit(function (e) {
+        $(':disabled').each(function (e) {
+            $(this).removeAttr('disabled');
+        })
+    });
 </script>
 {% endblock %}

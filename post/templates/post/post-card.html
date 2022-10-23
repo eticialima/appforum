@@ -1,24 +1,24 @@
 <tbody>
-        <tr>
-                <td scope="row">{{ objects.id }}</td>
-                <td scope="row">{{ objects.author }}</td>
-                <td scope="row">{{ objects.title }}</td>
-                <td scope="row">
-                        {% if objects.is_activate %}
-                        <div class="link-success">
-                                <i class="fas fa-check-circle"></i>
-                        </div>
-                        {% else %}
-                        <div class="link-danger">
-                                <i class="fas fa-times-circle"></i>
-                        </div>
-                        {% endif %}
-                </td>
-                <td>
-                        <a class="link-warning me-2" href="{% url 'post-update' objects.pk %}"><i class="fas fa-file-invoice" aria-hidden="true"></i>
-                        </a>
-                        <a class="link-danger" href="{% url 'post-delete' objects.pk %}"><i class="fas fa-trash" aria-hidden="true"></i>
-                        </a>
-                </td>
-        </tr>
+    <tr>
+        <td scope="row">{{ objects.id }}</td>
+        <td scope="row">{{ objects.author }}</td>
+        <td scope="row">{{ objects.title }}</td>
+        <td scope="row">
+            {% if objects.is_activate %}
+            <div class="link-success">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            {% else %}
+            <div class="link-danger">
+                <i class="fas fa-times-circle"></i>
+            </div>
+            {% endif %}
+        </td>
+        <td>
+            <a class="link-warning me-2" href="{% url 'post-update' objects.pk %}"><i class="fas fa-file-invoice" aria-hidden="true"></i>
+            </a>
+            <a class="link-danger" href="{% url 'post-delete' objects.pk %}"><i class="fas fa-trash" aria-hidden="true"></i>
+            </a>
+        </td>
+    </tr>
 </tbody>

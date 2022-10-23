@@ -1,57 +1,58 @@
 {% extends 'config/_config.html' %}
 {% block title %}Adicionar Usuário{% endblock %}
 {% load static %}
-{% block config %} 
+{% block config %}
 <form class="container-box lead" method="POST" action="{% url 'profile:usernew' %}" enctype="multipart/form-data" autocomplete="off">
-        {% csrf_token %}
-        <h2>Cadastrar Novo Usuario</h2>
-        <div class="row">
-                <div class="col-sm-6 mt-3">
-                        <label for="username">Email<span style="color: red;">*</span></label>
-                        <input type="email" class="form-control" id="username" name="username" required autofocus>
-                </div>
-                <div class="col-sm-6 mt-3">
-                        <label for="user_name"><b>Username</b><span style="color: red;">*</span></label>
-                        <input type="text" class="form-control" id="user_name" name="user_name" required autofocus>
-                        <span id="password-help" class="text-muted">Seu username deve conter no máximo 8 caracteres.</span><br>
-                </div>
-        </div>
-        <div class="row">
-                <div class="col-sm-6 mt-3">
-                        <label for="first_name">Nome<span style="color: red;">*</span></label>
-                        <input type="text" class="form-control" id="first_name" name="first_name" required>
-                </div>
-                <div class="col-sm-6 mt-3">
-                        <label for="last_name">Sobrenome<span style="color: red;">*</span></label>
-                        <input type="text" class="form-control" id="last_name" name="last_name" required> 
-                </div>
+    {% csrf_token %}
+    <h2>Cadastrar Novo Usuario</h2>
+    <div class="row">
+        <div class="col-sm-6 mt-3">
+            <label for="username">Email<span style="color: red;">*</span></label>
+            <input type="email" class="form-control" id="username" name="username" required autofocus>
         </div>
         <div class="col-sm-6 mt-3">
-                <label for="type_user">Tipo Usuario<span style="color: red;">*</span></label>
-                <select class="form-select form-control" id="type_user" name="type_user" selected>
-                        {% for i in form.type_user %}
-                        {{i}}
-                        {% endfor %}
-                </select>
+            <label for="user_name"><b>Username</b><span style="color: red;">*</span></label>
+            <input type="text" class="form-control" id="user_name" name="user_name" required autofocus>
+            <span id="password-help" class="text-muted">Seu username deve conter no máximo 8 caracteres.</span><br>
         </div>
-        <br>
-        <div class="row">
-                <div class="col-sm-6">
-                        <div class="mt-3">
-                                <label for="password1">Senha<span style="color: red;">*</span></label>
-                                <input type="password" class="form-control" id="password1" name="password1" required>
-                                <span id="password-help" class="text-muted">Sua senha deve conter no minimo 8 caracteres. E pelo menos 1 número e uma letra maiuscula.</span>
-                        </div>
-                </div>
-                <div class="col-sm-6">
-                        <div class= mt-3">
-                                <label for="password2">Confirmação da Senha<span style="color: red;">*</span></label>
-                                <input type="password" class="form-control" id="password2" name="password2" required>
-                        </div>
-                </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 mt-3">
+            <label for="first_name">Nome<span style="color: red;">*</span></label>
+            <input type="text" class="form-control" id="first_name" name="first_name" required>
         </div>
-        <div class="mt-3">
-                <button type="submit" class="btn-default btn-red">Cadastrar</button> 
+        <div class="col-sm-6 mt-3">
+            <label for="last_name">Sobrenome<span style="color: red;">*</span></label>
+            <input type="text" class="form-control" id="last_name" name="last_name" required>
         </div>
-</form>  
+    </div>
+    <div class="col-sm-6 mt-3">
+        <label for="type_user">Tipo Usuario<span style="color: red;">*</span></label>
+        <select class="form-select form-control" id="type_user" name="type_user" selected>
+            {% for i in form.type_user %}
+            {{i}}
+            {% endfor %}
+        </select>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="mt-3">
+                <label for="password1">Senha<span style="color: red;">*</span></label>
+                <input type="password" class="form-control" id="password1" name="password1" required>
+                <span id="password-help" class="text-muted">Sua senha deve conter no minimo 8 caracteres. E pelo menos 1
+                    número e uma letra maiuscula.</span>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class=mt-3">
+                <label for="password2">Confirmação da Senha<span style="color: red;">*</span></label>
+                <input type="password" class="form-control" id="password2" name="password2" required>
+            </div>
+        </div>
+    </div>
+    <div class="mt-3">
+        <button type="submit" class="btn-default btn-red">Cadastrar</button>
+    </div>
+</form>
 {% endblock %}

@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager  
 from django.core import validators
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 import re
 
 class UserManager(BaseUserManager):
@@ -38,10 +38,11 @@ class UserManager(BaseUserManager):
                 return self._create_user(email, password, **extra_fields)
 
 
-class CustomUser(AbstractUser): 
-
+class CustomUser(AbstractUser):
         TYPE_USER_CHOICES = [('ad', 'Administrador'),('co', 'Colaborador'),('us', 'Usuario Padrão')] 
-        user_name = models.CharField(_('user_name'), max_length=15, unique=True,help_text=_('Required. 15 characters or fewer. Letters, numbers and @/./+/-/_ characters'),validators=[ validators.RegexValidator(re.compile('^[\w.@+-]+$'), _('Enter a valid username.'), _('invalid'))])
+        user_name = models.CharField(_('user_name'), max_length=15, unique=True,
+                help_text=_('Required. 15 characters or fewer. Letters, numbers and @/./+/-/_ characters'),
+                validators=[ validators.RegexValidator(re.compile('^[\w.@+-]+$'), _('Enter a valid username.'), _('invalid'))])
         email = models.EmailField('Email', unique=True) 
         type_user = models.CharField('type_user',max_length=2,choices=TYPE_USER_CHOICES) 
         is_staff = models.BooleanField('Team member', default=True)

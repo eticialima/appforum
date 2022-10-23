@@ -18,7 +18,7 @@ class CustomUserCreateForm(UserCreationForm):
 		return user 
  
 class CustomUserChangeForm(UserChangeForm):
-
+	
 	class Meta():
 		model = CustomUser
 		fields = ('user_name', 'first_name', 'last_name', 'username', 'type_user', 'is_active')

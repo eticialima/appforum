@@ -1,71 +1,65 @@
 {% extends 'config/_config.html' %}
-{% block title %}Postagens{% endblock %} 
+{% block title %}Postagens{% endblock %}
 {% load static %}
-{% block config %} 
-<div class="row"> 
-        {% if request.path == "/post/post/" %}
-        <div class="col-auto">
-                <button class="btn-default btn-red" onclick="location.href='{% url 'post-create' %}'">Nova Pergunta</button>
-        </div> 
+{% block config %}
+<div class="row">
+    {% if request.path == "/post/post/" %}
+    <div class="col-auto">
+        <button class="btn-default btn-red" onclick="location.href='{% url 'post-create' %}'">Nova Pergunta</button>
+    </div>
+    {% endif %}
+    <div class="col">
+        <form class="row align-items-center" method="get">
+            <div class="col-auto">
+                <div class="col-auto form-check form-check-inline">
+                    <input type="radio" name="is_activate" value="1" {% if request.GET.is_activate == "1" %} checked="checked" {% endif %}>
+                    <label for="is_activate">Ativadas</label>
+                </div>
+                <div class="col-auto form-check form-check-inline">
+                    <input type="radio" name="is_activate" value="0" {% if request.GET.is_activate == "0" %} checked="checked" {% endif %}>
+                    <label for="is_activate">Desativadas</label>
+                </div>
+            </div>
+            <div class="col-auto">
+                <input name="title" type="text" value="{{request.GET.title}}" class="form-control" placeholder="Pesquisar pelo nome de usuario...">
+            </div>
+            <div class="col-auto">
+                <button class="btn-default btn-red" type="submit"><i class="fa fa-search"></i></button>
+            </div>
+        </form>
+    </div>
+    {% if request.GET.title or request.GET.is_activate %}
+    <div class="col-auto">
+        {% if request.path == "/post/todos/" %}
+        <button class="btn-default btn-red" onclick="location.href='{% url 'post-todos' %}'">Reset</button>
+        {% else %}
+        <button class="btn-default btn-red" onclick="location.href='{% url 'post' %}'">Reset</button>
         {% endif %}
-        <div class="col"> 
-                <form class="row align-items-center" method="get">  
-                         <div class="col-auto">
-                                <div class="col-auto form-check form-check-inline">
-                                        <input type="radio" name="is_activate" value="1" {% if request.GET.is_activate == "1" %} checked="checked" {% endif %}>
-                                        <label for="is_activate">Ativadas</label> 
-                                </div>
-                                <div class="col-auto form-check form-check-inline">
-                                        <input type="radio" name="is_activate"  value="0" {% if request.GET.is_activate == "0" %} checked="checked" {% endif %}>
-                                        <label for="is_activate">Desativadas</label> 
-                                </div>
-                        </div>  
-                        <div class="col-auto">
-                                <input name="title" type="text" value="{{request.GET.title}}" class="form-control" placeholder="Pesquisar pelo nome de usuario..."> 
-                        </div>
-                        <div class="col-auto">
-                                <button class="btn-default btn-red" type="submit"><i class="fa fa-search"></i></button>
-                        </div>
-                </form>
-        </div> 
-        {% if request.GET.title or request.GET.is_activate %}
-        <div class="col-auto">
-                {% if request.path == "/post/todos/" %}
-                        <button class="btn-default btn-red" onclick="location.href='{% url 'post-todos' %}'">Reset</button>
-                {% else %}
-                        <button class="btn-default btn-red" onclick="location.href='{% url 'post' %}'">Reset</button>
-                {% endif %}
-
-                
-        </div>
-        {% endif %}
-</div> 
+    </div>
+    {% endif %}
+</div>
 <div class="table-responsive">
-        <table class="text-center table table-bordered rounded mt-3 shadow-sm">
-                <thead class="table-light">
-                        <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Usuario</th>
-                                <th scope="col">Titulo</th>
-                                <th scope="col">Publicado</th>
-                                <th scope="col">Ações</th>
-                        </tr>
-                </thead> 
-
-                {% if request.path == "/post/todos/" %}
-                        {% for objects in post_todos %}
-                        {% include "post/post-card.html" %}
-                        {% endfor %}
-                {% else %} 
-                        {% for objects in post_disable %}
-                        {% if request.user == objects.author %}
-                        {% include "post/post-card.html" %}
-                        {% endif %}  
-                        {% endfor %}
-                {% endif %}
-
-                
-        </table>
+    <table class="text-center table table-bordered rounded mt-3 shadow-sm">
+        <thead class="table-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Usuario</th>
+                <th scope="col">Titulo</th>
+                <th scope="col">Publicado</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        {% if request.path == "/post/todos/" %}
+        {% for objects in post_todos %}
+        {% include "post/post-card.html" %}
+        {% endfor %}
+        {% else %}
+        {% for objects in post_disable %}
+        {% if request.user == objects.author %}
+        {% include "post/post-card.html" %}
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+    </table>
 </div>
 {% endblock %}
- 

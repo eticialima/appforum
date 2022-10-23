@@ -1,12 +1,12 @@
 {% load widget_tweaks %}
 {% load static %}
-<div class="container-box"> 
-        <h6>Todas as tags</h6>
-        <form class="d-flex" method="GET"> 
-                <div class="form-group col"> 
-                        {% for tag in tags %}
-                        <a href="{% url 'home:tagged' tag.slug %}"><span class="btn-tags btn-gray">{{tag.name}}</span></a>
-                        {% endfor %} 
-                </div>
-        </form>
+<div class="container-box">
+    <h6>Todas as tags</h6>
+    <form class="d-flex" method="GET">
+        <div class="form-group col">
+            {% for tag in tags %}
+            <a href="{% url 'home:tagged' tag.slug %}"><span class="btn-tags btn-gray">{{tag.name}}</span></a>
+            {% endfor %}
+        </div>
+    </form>
 </div>

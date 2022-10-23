@@ -3,96 +3,97 @@
 {% load static %}
 {% block config %}
 <div class="row">
-        <div class="col-auto">
-                <button class="btn-default btn-red" onclick="location.href='{% url 'profile:usernew' %}'">Novo Usuários</button>
-        </div>
-        <div class="col">
-                <form class="row align-items-center" method="get" action="{% url 'profile:users-profile' %}">
-                        <div class="col-auto form-check form-check-inline">
-                                <input type="radio" name="is_active" value="1" {% if request.GET.is_active == "1" %} checked="checked" {% endif %}>
-                                <label for="is_active">Ativadas</label>
-                        </div>
-                        <div class="col-auto form-check form-check-inline">
-                                <input type="radio" name="is_active" value="0" {% if request.GET.is_active == "0" %} checked="checked" {% endif %}>
-                                <label for="is_activate">Desativadas</label>
-                        </div>
-                        <div class="col-auto">
-                                <input name="user_name" type="text" value="{{request.GET.user_name}}" class="form-control" placeholder="Pesquisar pelo nome de usuario...">
-                        </div>
-                        <div class="col-auto">
-                                <button class="btn-default btn-red" type="submit"><i class="fa fa-search"></i></button>
-                        </div>
-                </form> 
-        </div>
-        {% if request.GET.user_name or request.GET.is_active %}
-        <div class="col-auto">
-                <button class="btn-default btn-red" onclick="location.href='{% url 'profile:users-profile' %}'">Reset</button>
-        </div>
-        {% endif %}
+    <div class="col-auto">
+        <button class="btn-default btn-red" onclick="location.href='{% url 'profile:usernew' %}'">Novo Usuários</button>
+    </div>
+    <div class="col">
+        <form class="row align-items-center" method="get" action="{% url 'profile:users-profile' %}">
+            <div class="col-auto form-check form-check-inline">
+                <input type="radio" name="is_active" value="1" {% if request.GET.is_active == "1" %} checked="checked" {% endif %}>
+                <label for="is_active">Ativadas</label>
+            </div>
+            <div class="col-auto form-check form-check-inline">
+                <input type="radio" name="is_active" value="0" {% if request.GET.is_active == "0" %} checked="checked" {% endif %}>
+                <label for="is_activate">Desativadas</label>
+            </div>
+            <div class="col-auto">
+                <input name="user_name" type="text" value="{{request.GET.user_name}}" class="form-control" placeholder="Pesquisar pelo nome de usuario...">
+            </div>
+            <div class="col-auto">
+                <button class="btn-default btn-red" type="submit"><i class="fa fa-search"></i></button>
+            </div>
+        </form>
+    </div>
+    {% if request.GET.user_name or request.GET.is_active %}
+    <div class="col-auto">
+        <button class="btn-default btn-red" onclick="location.href='{% url 'profile:users-profile' %}'">Reset</button>
+    </div>
+    {% endif %}
 </div>
 <div class="table-responsive">
-        <table class="text-center table table-bordered rounded mt-3 shadow-sm">
-                <thead class="table-light">
-                        <tr>
-                                <th scope="col">#</th> 
-                                <th scope="col">Foto</th>
-                                <th scope="col">Nome</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Tipo de Usuários</th>
-                                <th scope="col">Data de Registro</th>
-                                <th scope="col">Ativo?</th>
-                                <th scope="col">Ações</th>
-                        </tr>
-                </thead>
-                {% for user_list in profile_list %} 
-                {% if not user_list.is_superuser %}
-                <tbody>
-                        <tr>
-                                <th scope="row">{{user_list.user.id}}</th>  
-                                <th scope="row">
-                                        {% if user_list.image %} 
-                                        <a data-bs-toggle="modal" href="#imgModal{{user_list.user.first_name}}">
-                                                <img src="{{user_list.image.thumb.url}}" class="img-fluid" alt="{{ user_list.first_name }}" width="30" height="30">
-                                        </a> 
-                                        {% else %}
-                                                <img src="{% static 'images/default.png' %}" class="img-fluid" alt="{{ user_list.first_name }}" width="30" height="30">
-                                        {% endif %} 
-                                </th> 
-                                <th scope="row">{{user_list.user.first_name}} {{user_list.user.last_name}}</th>
-                                <th scope="row">{{user_list.user.username}}</th>
-                                <th scope="row">{{user_list.user.get_type_user_display}}</th>
-                                <th scope="row">{{user_list.user.date_joined}}</th>
-                                <th scope="row">
-                                        {% if user_list.user.is_active %}
-                                        <i class="link-success mx-2 fas fa-check-circle"></i>
-                                        {% else %}
-                                        <i class="link-light mx-2 fas fa-check-circle"></i>
-                                        {% endif %}
-                                 </th>
-                                <th scope="row">
-                                        <a class="link-warning" href="{% url 'accounts:user-change' user_list.pk %}"><i class="fas fa-eye"></i></a>
-                                        <a class="ml-2 link-secondary" href="{% url 'accounts:user-change' user_list.pk %}"><i class="far fa-file"></i></a>
-                                        <a class="ml-3 link-danger" href="{% url 'accounts:user-delete' user_list.pk %}"><i class="fas fa-trash"></i></a>  
-                                </th>
-                        </tr>
-                </tbody> 
-                {% endif %} 
-                <div class="modal fade" id="imgModal{{user_list.user.first_name}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                        <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Foto de Perfil de {{ user_list.user.first_name }}</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body text-center">
-                                        {% if  user_list.image %}  
-                                                <img src="{{user_list.image.url}}" class="img-fluid" alt="{{ user_list.user.first_name }}"> 
-                                        {% endif %}  
-                                        </div> 
-                                </div>
-                        </div>
+    <table class="text-center table table-bordered rounded mt-3 shadow-sm">
+        <thead class="table-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Foto</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Email</th>
+                <th scope="col">Tipo de Usuários</th>
+                <th scope="col">Data de Registro</th>
+                <th scope="col">Ativo?</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        {% for user_list in profile_list %}
+        {% if not user_list.is_superuser %}
+        <tbody>
+            <tr>
+                <th scope="row">{{user_list.user.id}}</th>
+                <th scope="row">
+                    {% if user_list.image %}
+                    <a data-bs-toggle="modal" href="#imgModal{{user_list.user.first_name}}">
+                        <img src="{{user_list.image.thumb.url}}" class="img-fluid" alt="{{ user_list.first_name }}" width="30" height="30">
+                    </a>
+                    {% else %}
+                    <img src="{% static 'images/default.png' %}" class="img-fluid" alt="{{ user_list.first_name }}" width="30" height="30">
+                    {% endif %}
+                </th>
+                <th scope="row">{{user_list.user.first_name}} {{user_list.user.last_name}}</th>
+                <th scope="row">{{user_list.user.username}}</th>
+                <th scope="row">{{user_list.user.get_type_user_display}}</th>
+                <th scope="row">{{user_list.user.date_joined}}</th>
+                <th scope="row">
+                    {% if user_list.user.is_active %}
+                    <i class="link-success mx-2 fas fa-check-circle"></i>
+                    {% else %}
+                    <i class="link-light mx-2 fas fa-check-circle"></i>
+                    {% endif %}
+                </th>
+                <th scope="row">
+                    <a class="link-warning" href="{% url 'accounts:user-change' user_list.pk %}"><i class="fas fa-eye"></i></a>
+                    <a class="ml-2 link-secondary" href="{% url 'accounts:user-change' user_list.pk %}"><i class="far fa-file"></i></a>
+                    <a class="ml-3 link-danger" href="{% url 'accounts:user-delete' user_list.pk %}"><i class="fas fa-trash"></i></a>
+                </th>
+            </tr>
+        </tbody>
+        {% endif %}
+        <div class="modal fade" id="imgModal{{user_list.user.first_name}}" tabindex="-1"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Foto de Perfil de {{ user_list.user.first_name }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        {% if user_list.image %}
+                        <img src="{{user_list.image.url}}" class="img-fluid" alt="{{ user_list.user.first_name }}">
+                        {% endif %}
+                    </div>
                 </div>
-                {% endfor %}
-        </table>
-</div> 
+            </div>
+        </div>
+        {% endfor %}
+    </table>
+</div>
 {% endblock %}
