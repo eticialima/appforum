@@ -9,19 +9,19 @@
     <br>
     <div class="row">
         <div class="col">
-            <label>Titulo</label>
+            <label>Title</label>
             {% render_field form.title class="form-control" type="text" %}
         </div>
         <br>
         <div class="col">
-            <label>Descrição</label>
+            <label>Description</label>
             {% render_field form.desc class="form-control" type="text" rows="3" %}
         </div>
     </div>
     <br>
     <div class="row">
         <div class="col">
-            <label>Categoria</label>
+            <label>Category</label>
             {% render_field form.category class="form-control form-select" id="category" name="category" %}
         </div>
         <br>
@@ -33,23 +33,23 @@
     <br>
     <div class="row">
         <div class="col">
-            <label>Data de Criação</label>
+            <label>Creation date</label>
             {% render_field form.created_date class="form-control" type="text" disabled="disabled" %}
         </div>
         <br>
         <div class="col">
-            <label>Data de Publicação</label>
+            <label>Publication date</label>
             {% render_field form.published_date class="form-control" id="published_date" type="date" %}
         </div>
     </div>
     <br>
-    <label>Publicação Ativa ?</label>
+    <label>Active Publication ?</label>
     {% render_field form.is_activate class="form-check-input" id="is_activate" name="is_activate" %}
     <br>
     <br>
     <br>
     <div class="row">
-        <label>Pode upar 3 arquivos até 500M</label>
+        <label>You can upload 3 files up to 500M</label>
         <div class="col">
             {% render_field form.files1 class="form-control form-control-sm" type="file" %}
             <p class="text-muted fst-italic" style="font-size:12px;">Formato suportado | Winrar | Zip | JPG | PNG |</p>
@@ -64,8 +64,8 @@
         </div>
     </div>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <button type="submit" class="btn-default btn-red" name="btn_adicionar">Criar</button>
-        <button type="button" class="mr-2 btn-default btn-red" onclick="location.href='{% url 'home:home' %}'">Voltar</button>
+        <button type="submit" class="btn-default btn-red" name="btn_adicionar">Create</button>
+        <button type="button" class="mr-2 btn-default btn-red" onclick="location.href='{% url 'home:home' %}'">Come back</button>
     </div>
 </form>
 <script>

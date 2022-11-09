@@ -8,24 +8,24 @@
         <main class="col form-signin text-center lead">
             <form id="mainform" method="post" class="form" action="" autocomplete="off" enctype="multipart/form-data">
                 {% csrf_token %}
-                <label>Autor da postagem</label>
+                <label>Post author</label>
                 {% render_field form.author class="form-control" type="text" disabled="disabled" %}
                 <br>
                 <div class="row">
                     <div class="col">
-                        <label>Titulo</label>
+                        <label>Title</label>
                         {% render_field form.title class="form-control" type="text" %}
                     </div>
                     <br>
                     <div class="col">
-                        <label>Descrição</label>
+                        <label>Description</label>
                         {% render_field form.desc class="form-control" type="text" rows="3" %}
                     </div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col">
-                        <label>Categoria</label>
+                        <label>Category</label>
                         {% render_field form.category class="form-control form-select" id="category" name="category" %}
                     </div>
                     <br>
@@ -37,42 +37,42 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <label>Data de Criação</label>
+                        <label>Date created</label>
                         {% render_field form.created_date class="form-control" type="text" disabled="disabled" %}
                     </div>
                     <br>
                     <div class="col">
-                        <label>Data de Publicação</label>
+                        <label>Date Publication</label>
                         {% render_field form.published_date class="form-control" type="text" disabled="disabled" %}
                     </div>
                 </div>
                 <br>
-                <label><code>Publicação Ativa ?</code></label>
+                <label><code>active publication ?</code></label>
                 {% render_field form.is_activate class="form-check-input" id="is_activate" name="is_activate" %}
                 <br>
                 <br>
                 <div class="row">
-                    <label>Pode upar 3 arquivos até 500M</label>
+                    <label>You can upload 3 files up to 500M</label>
                     <div class="col">
                         {% render_field form.files1 class="form-control form-control-sm" type="file" %}
-                        <p class="text-muted fst-italic" style="font-size:12px;">Formato suportado | Winrar | Zip | JPG
+                        <p class="text-muted fst-italic" style="font-size:12px;">supported format | Winrar | Zip | JPG
                             | PNG |</p>
                     </div>
                     <div class="col">
                         {% render_field form.files2 class="form-control form-control-sm" type="file" %}
-                        <p class="text-muted fst-italic" style="font-size:12px;">Formato suportado | Winrar | Zip | JPG
+                        <p class="text-muted fst-italic" style="font-size:12px;">supported format | Winrar | Zip | JPG
                             | PNG |</p>
                     </div>
                     <div class="col">
                         {% render_field form.files3 class="form-control form-control-sm" type="file" %}
-                        <p class="text-muted fst-italic" style="font-size:12px;">Formato suportado | Winrar | Zip | JPG
+                        <p class="text-muted fst-italic" style="font-size:12px;">supported format | Winrar | Zip | JPG
                             | PNG |</p>
                     </div>
                 </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="submit" class="btn-default btn-red">Atualizar</button>
+                    <button type="submit" class="btn-default btn-red">Update</button>
                     <button type="button" class="mr-2 btn-default btn-red"
-                        onclick="location.href='{% url 'profile:user-profile' request.user.user_name %}'">Voltar</button>
+                        onclick="location.href='{% url 'profile:user-profile' request.user.user_name %}'">Back</button>
                 </div>
             </form>
         </main>

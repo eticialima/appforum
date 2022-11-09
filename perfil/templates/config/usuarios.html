@@ -4,17 +4,17 @@
 {% block config %}
 <div class="row">
     <div class="col-auto">
-        <button class="btn-default btn-red" onclick="location.href='{% url 'profile:usernew' %}'">Novo Usuários</button>
+        <button class="btn-default btn-red" onclick="location.href='{% url 'profile:usernew' %}'">New Users</button>
     </div>
     <div class="col">
         <form class="row align-items-center" method="get" action="{% url 'profile:users-profile' %}">
             <div class="col-auto form-check form-check-inline">
                 <input type="radio" name="is_active" value="1" {% if request.GET.is_active == "1" %} checked="checked" {% endif %}>
-                <label for="is_active">Ativadas</label>
+                <label for="is_active">activated</label>
             </div>
             <div class="col-auto form-check form-check-inline">
                 <input type="radio" name="is_active" value="0" {% if request.GET.is_active == "0" %} checked="checked" {% endif %}>
-                <label for="is_activate">Desativadas</label>
+                <label for="is_activate">deactivated</label>
             </div>
             <div class="col-auto">
                 <input name="user_name" type="text" value="{{request.GET.user_name}}" class="form-control" placeholder="Pesquisar pelo nome de usuario...">
@@ -35,13 +35,13 @@
         <thead class="table-light">
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Foto</th>
-                <th scope="col">Nome</th>
+                <th scope="col">Photo</th>
+                <th scope="col">Name</th>
                 <th scope="col">Email</th>
-                <th scope="col">Tipo de Usuários</th>
-                <th scope="col">Data de Registro</th>
-                <th scope="col">Ativo?</th>
-                <th scope="col">Ações</th>
+                <th scope="col">Type of Users</th>
+                <th scope="col">Date of Registration</th>
+                <th scope="col">Active?</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         {% for user_list in profile_list %}
@@ -82,7 +82,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Foto de Perfil de {{ user_list.user.first_name }}</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Profile photo of {{ user_list.user.first_name }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body text-center">

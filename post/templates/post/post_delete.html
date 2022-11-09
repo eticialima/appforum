@@ -6,15 +6,15 @@
     <div class="form-signin"> 
         <h2>Aviso</h2>
         <p>
-        Tem a certeza que deseja eliminar esta postagem ? 
+        Are you sure you want to delete this post?
         <br>
-        Esta postagens será removida completamente.
+        This posts will be removed completely.
         </p>
         <form method="POST" class="form" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">
-                <button type="submit" class="btn-default btn-red">Sim</button>   
-                <button class="btn-default btn-red" onclick="location.href='{% url 'post'%}'">Cancelar</button> 
+                <button type="submit" class="btn-default btn-red">Yea</button>   
+                <button class="btn-default btn-red" onclick="location.href='{% url 'post'%}'">Cancel</button> 
             </div>
         </form>
     </div>

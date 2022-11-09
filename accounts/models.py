@@ -10,7 +10,7 @@ class UserManager(BaseUserManager):
         def _create_user(self, email, password, **extra_fields):
 
                 if not email:
-                        raise ValueError('E-mail é obrigatório')
+                        raise ValueError('Email is mandatory')
 
                 email = self.normalize_email(email)
                 user = self.model(email=email, username=email, **extra_fields)
@@ -39,7 +39,7 @@ class UserManager(BaseUserManager):
 
 
 class CustomUser(AbstractUser):
-        TYPE_USER_CHOICES = [('ad', 'Administrador'),('co', 'Colaborador'),('us', 'Usuario Padrão')] 
+        TYPE_USER_CHOICES = [('ad', 'Administrator'),('co', 'Collaborator'),('us', 'User Default')] 
         user_name = models.CharField(_('user_name'), max_length=15, unique=True,
                 help_text=_('Required. 15 characters or fewer. Letters, numbers and @/./+/-/_ characters'),
                 validators=[ validators.RegexValidator(re.compile('^[\w.@+-]+$'), _('Enter a valid username.'), _('invalid'))])

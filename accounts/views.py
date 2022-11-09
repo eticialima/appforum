@@ -1,7 +1,5 @@
 from django.shortcuts import redirect
-from django.urls import reverse_lazy
-from django.urls.base import reverse  
-from django.contrib import messages
+from django.urls import reverse_lazy 
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.views import LoginView, PasswordChangeView, PasswordResetView, PasswordResetConfirmView, PasswordResetCompleteView
 from base.base_admin_permissions import BaseAdminUsersAd, BaseAdminUsersall
@@ -12,60 +10,60 @@ from accounts.models import CustomUser
 
 
 class UserLogin(SuccessMessageMixin, LoginView):
-        template_name = 'accounts/login.html' 
-        success_message = 'Login Efetuado com sucesso'
- 
-        def get(self, request, *args, **kwargs):
-                if self.request.user.is_authenticated:
-                        return redirect('home:home')
-                else:
-                        return self.render_to_response(self.get_context_data())
+	template_name = 'accounts/login.html' 
+	success_message = 'Login Efetuado com sucesso'
+
+	def get(self, request, *args, **kwargs):
+		if self.request.user.is_authenticated:
+			return redirect('home:home')
+		else:
+			return self.render_to_response(self.get_context_data())
 
 
 class UserCreate(SuccessMessageMixin, CreateView):
-        model = CustomUser
-        form_class = CustomUserCreateForm
-        template_name = 'accounts/user-new.html'
-        success_url = reverse_lazy('accounts:login')
-        success_message = 'Cadastro Efetuado com sucesso'
+	model = CustomUser
+	form_class = CustomUserCreateForm
+	template_name = 'accounts/user-new.html'
+	success_url = reverse_lazy('accounts:login')
+	success_message = 'Registration successfully Complete'
         
 
 class UserChange(BaseAdminUsersall, UpdateView):
-        model = CustomUser
-        form_class = CustomUserChangeForm
-        template_name = 'accounts/user-change.html'
-        success_url = reverse_lazy('profile:users-profile')
-        success_message = 'Sua mudança de perfil foi bem-sucedida' 
+	model = CustomUser
+	form_class = CustomUserChangeForm
+	template_name = 'accounts/user-change.html'
+	success_url = reverse_lazy('profile:users-profile')
+	success_message = 'Your profile change was successful' 
 
 
 class UserDelete(BaseAdminUsersAd, DeleteView):
-        model = CustomUser
-        template_name = 'accounts/user-delete.html'
-        success_url = reverse_lazy('profile:users-profile')
-        success_message = 'Perfil deletado com sucesso.'
+	model = CustomUser
+	template_name = 'accounts/user-delete.html'
+	success_url = reverse_lazy('profile:users-profile')
+	success_message = 'Profile successfully deleted.'
 
 
 class PasswordChange(SuccessMessageMixin, PasswordChangeView):
-        template_name = 'accounts/password-change.html'
-        success_url = reverse_lazy('accounts:login')
-        success_message = 'Sua mudança de senha foi bem sucedida'
+	template_name = 'accounts/password-change.html'
+	success_url = reverse_lazy('accounts:login')
+	success_message = 'Your password change was successful'
 
 
 class PasswordReset(SuccessMessageMixin, PasswordResetView):
-        template_name = 'accounts/password-reset.html'
+	template_name = 'accounts/password-reset.html'
 
 
 class PasswordResetConfirm(SuccessMessageMixin, PasswordResetConfirmView):
-        success_message = 'Sua senha foi redefinida corretamente. Faça login para começar'
+	success_message = 'Your password has been correctly reset. Login to get started'
 
 
 class PasswordResetComplete(SuccessMessageMixin, PasswordResetCompleteView):
-        template_name = 'accounts/password-reset-complete.html'
-        success_message = 'Sua senha foi redefinida corretamente. Faça login para começar'
+	template_name = 'accounts/password-reset-complete.html'
+	success_message = 'Your password has been correctly reset. Login to get started'
 
-        def get(self, request, *args, **kwargs):
-                return redirect('accounts:login') 
-    
+	def get(self, request, *args, **kwargs):
+		return redirect('accounts:login') 
+
     
 class TimeOutView(TemplateView):
-        template_name = 'timeout/timeout.html'
+	template_name = 'timeout/timeout.html'

@@ -5,7 +5,7 @@
 <div class="row">
     {% if request.path == "/post/post/" %}
     <div class="col-auto">
-        <button class="btn-default btn-red" onclick="location.href='{% url 'post-create' %}'">Nova Pergunta</button>
+        <button class="btn-default btn-red" onclick="location.href='{% url 'post-create' %}'">New Question</button>
     </div>
     {% endif %}
     <div class="col">
@@ -13,15 +13,15 @@
             <div class="col-auto">
                 <div class="col-auto form-check form-check-inline">
                     <input type="radio" name="is_activate" value="1" {% if request.GET.is_activate == "1" %} checked="checked" {% endif %}>
-                    <label for="is_activate">Ativadas</label>
+                    <label for="is_activate">activated</label>
                 </div>
                 <div class="col-auto form-check form-check-inline">
                     <input type="radio" name="is_activate" value="0" {% if request.GET.is_activate == "0" %} checked="checked" {% endif %}>
-                    <label for="is_activate">Desativadas</label>
+                    <label for="is_activate">deactivated</label>
                 </div>
             </div>
             <div class="col-auto">
-                <input name="title" type="text" value="{{request.GET.title}}" class="form-control" placeholder="Pesquisar pelo nome de usuario...">
+                <input name="title" type="text" value="{{request.GET.title}}" class="form-control" placeholder="Search by username...">
             </div>
             <div class="col-auto">
                 <button class="btn-default btn-red" type="submit"><i class="fa fa-search"></i></button>
@@ -43,10 +43,10 @@
         <thead class="table-light">
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Usuario</th>
-                <th scope="col">Titulo</th>
-                <th scope="col">Publicado</th>
-                <th scope="col">Ações</th>
+                <th scope="col">User</th>
+                <th scope="col">Title</th>
+                <th scope="col">Published</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         {% if request.path == "/post/todos/" %}

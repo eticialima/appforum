@@ -8,12 +8,12 @@
 					<input class="search" type="text" name="title" id="title" placeholder="Pesquisar...">
 				</form>
 			</li>
-			<li><a href="/">Inicio</a></li>
-			<li><a href="#">Sobre</a></li>
-			<li><a href="#">Contato</a></li>
+			<li><a href="/">Home</a></li>
+			<li><a href="#">About</a></li>
+			<li><a href="#">Contact</a></li>
 			<li>
 				<button class=" btn-default btn-red d-flex" onclick="location.href='{% url 'post-create' %}'">
-				<i class="fa fa-plus mx-2"></i> Perguntar</button></li>
+				<i class="fa fa-plus mx-2"></i> To ask</button></li>
 			<li>
 
 				{% if user.is_authenticated %}
@@ -31,8 +31,8 @@
 					</div>
 
 					<div class="menu text-start lh-lg">
-						<a href="{% url 'profile:user-profile' user.user_name %}" class="link-secondary">Meu Perfil</a>
-						<a href="{% url 'profile:config' %}" class="link-secondary">Configurações</a>
+						<a href="{% url 'profile:user-profile' user.user_name %}" class="link-secondary">My Profile</a>
+						<a href="{% url 'profile:config' %}" class="link-secondary">Settings</a>
 						<button class=" btn-default btn-red d-flex"
 							onclick="location.href='{% url 'accounts:logout' %}'">Logout</button>
 					</div>
@@ -51,15 +51,14 @@
 		<div class="bar2"></div>
 		<div class="bar3"></div>
 		<ul class="mobile-menu">
-			<li><a href="/">Inicio</a></li>
-			<li><a href="#">Sobre</a></li>
-			<li><a href="#">Contato</a></li>
+			<li><a href="/">Home</a></li>
+			<li><a href="#">About</a></li>
+			<li><a href="#">Contact</a></li>
 			<br>
-
 			{% if user.is_authenticated %}
 			<li><a href="#">{{ user.user_name }}</a></li>
-			<li><a href="{% url 'profile:user-profile' user.user_name %}">Meu Perfil</a></li>
-			<li><a href="{% url 'profile:config' %}">Configurações</a></li>
+			<li><a href="{% url 'profile:user-profile' user.user_name %}">My Profile</a></li>
+			<li><a href="{% url 'profile:config' %}">Settings</a></li>
 			<li><button class=" btn-default btn-red d-flex" onclick="location.href='{% url 'accounts:logout' %}'">Logout</button></li>
 			{% else %}
 			<button class=" btn-default btn-red d-flex" onclick="location.href='{% url 'accounts:login' %}'">Login</button></li>

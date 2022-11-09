@@ -5,7 +5,7 @@
 <form class="container-box lead" method="post" action="{% url 'profile:edit-profile' %}" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="row">
-        <h3>Configurações</h3>
+        <h3>Settings</h3>
         <div class="col-md-6 mb-3">
             <label for="input">First Name</label>
             <input type="text" id="input" name="first_name" class="form-control" required="required" value="{{ request.user.first_name }}" />
@@ -43,7 +43,7 @@
             </div>
         </div>
         <div class="col-md-4 mb-3">
-            <label for="input">Telefone</label>
+            <label for="input">Phone</label>
             <input type="text" name="phone" class="form-control" required="required" value="{{ profile.phone }}" />
         </div>
         <div class="col-md-12 mb-3">
@@ -60,7 +60,7 @@
     </div>
     <div class="mb-3">
         <button type="submit" class="btn-default btn-gray">Update</button>
-        <button type="button" class="mr-2 btn-default btn-red" onclick="location.href='{% url 'profile:user-profile' request.user.user_name %}'">Voltar</button>
+        <button type="button" class="mr-2 btn-default btn-red" onclick="location.href='{% url 'profile:user-profile' request.user.user_name %}'">Back</button>
     </div>
 </form>
 {% endblock %}

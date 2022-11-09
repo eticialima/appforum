@@ -1,60 +1,62 @@
 {% extends 'config/_config.html' %}
-{% block title %}Alterar Usuário{% endblock %} 
+{% block title %}Alterar Usuário{% endblock %}
 {% load widget_tweaks %}
 {% load static %}
-{% block config %} 
-<div class="container-box text-center lead"> 
-        <h4>Configurações do Usuário</h4>
-        <form id="mainchange" method="post" autocomplete="off" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="row">
-                        <div class="col-sm-6 form-group mt-3">
-                                <label for="user_name">Username</label>
-                                {% render_field form.user_name class="form-control" id="user_name" name="user_name" %}
-                        </div>
-                        <div class="col-sm-6 form-group mt-3">
-                                <label for="username">Email</label>
-                                {% render_field form.username class="form-control" id="username" name="username" %}
-                        </div>
-                </div>
-                <div class="row">
-                        <div class="col-sm-6 form-group mt-3">
-                                <label for="first_name">Nome</label>
-                                {% render_field form.first_name class="form-control" id="first_name" name="first_name" %}
-                        </div>
-                        <div class="col-sm-6 form-group mt-3">
-                                <label for="last_name">Sobrenome</label>
-                                {% render_field form.last_name class="form-control" id="last_name" name="last_name" %}
-                        </div>
-                </div>
-                <div class="row">
-                        <div class="col-sm-6">
-                                <div class="form-group mt-3">
-                                        <label for="type_user">Tipo Usuario</label>
-                                        {% render_field form.type_user class="form-select form-control" id="type_user" name="type_user" disabled="disabled" %}
-                                </div>
-                        </div>
-                        <div class="col-sm-6">
-                                <div class="form-group mt-3">
-                                        <label for="is_active"><code>Usuário ís_active ?</code></label>
-                                        {% render_field form.is_active class="form-check-input" id="is_active" name="is_active" %}
-                                        <br>
-                                        <small id="text-help" class="text-muted">Após desativar conta usuario não terá mais acesso. Suas postagens e comentarios serão desativados.</small>
-                                </div>
-                        </div>
-                </div>
+{% block config %}
+<div class="container-box text-center lead">
+    <h4>User settings</h4>
+    <form id="mainchange" method="post" autocomplete="off" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-sm-6 form-group mt-3">
+                <label for="user_name">Username</label>
+                {% render_field form.user_name class="form-control" id="user_name" name="user_name" %}
+            </div>
+            <div class="col-sm-6 form-group mt-3">
+                <label for="username">E-mail</label>
+                {% render_field form.username class="form-control" id="username" name="username" %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 form-group mt-3">
+                <label for="first_name">Name</label>
+                {% render_field form.first_name class="form-control" id="first_name" name="first_name" %}
+            </div>
+            <div class="col-sm-6 form-group mt-3">
+                <label for="last_name">Last Name</label>
+                {% render_field form.last_name class="form-control" id="last_name" name="last_name" %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
                 <div class="form-group mt-3">
-                        <button type="submit" class="btn-default btn-red" name="btn_cadastro_canal">Alterar</button> 
+                    <label for="type_user">User Type</label>
+                    {% render_field form.type_user class="form-select form-control" id="type_user" name="type_user"
+                    disabled="disabled" %}
                 </div>
-        </form>
-        <a class="link-secondary " role="button" onclick="location.href='{% url 'profile:users-profile' %}'">Cancelar</a>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group mt-3">
+                    <label for="is_active"><code>User is_active ?</code></label>
+                    {% render_field form.is_active class="form-check-input" id="is_active" name="is_active" %}
+                    <br>
+                    <small id="text-help" class="text-muted">After deactivating the user account, you will no longer have access. Your
+                        posts and comments will be disabled.</small>
+                </div>
+            </div>
+        </div>
+        <div class="form-group mt-3">
+            <button type="submit" class="btn-default btn-red" name="btn_cadastro_canal">Change</button>
+        </div>
+    </form>
+    <a class="link-secondary " role="button" onclick="location.href='{% url 'profile:users-profile' %}'">Cancel</a>
 </div>
 <script>
-        // Formulario não envia campos desabilitados
-        $('#mainchange').submit(function (e) {
-                $(':disabled').each(function (e) {
-                        $(this).removeAttr('disabled');
-                })
-        });
+    // Formulario não envia campos desabilitados
+    $('#mainchange').submit(function (e) {
+        $(':disabled').each(function (e) {
+            $(this).removeAttr('disabled');
+        })
+    });
 </script>
 {% endblock %}

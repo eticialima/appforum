@@ -11,7 +11,7 @@
             </div>
             <div class="col">
                 <br>
-                <h1>Perfil Desativado ou Deletado do sistema !!!</h1>
+                <h1>Profile Deactivated or Deleted from the system !!!</h1>
             </div>
         </div>
     </div>
@@ -50,16 +50,16 @@
             </div>
             <p>Username: {{perfil.user_name}}</p>
             <div class="title-container">
-                <h5>Sobre:</h5>
+                <h5>About:</h5>
             </div>
             <p>{{ perfil.profile.description }}</p>
             <div class="row">
                 <div class="col-6">
-                    <h5>Atuo como: {{perfil.profile.occupation}}</h5>
-                    <p>Cidade: {{perfil.profile.city}} {{perfil.profile.country}}</p>
+                    <h5>Occupation: {{perfil.profile.occupation}}</h5>
+                    <p>City: {{perfil.profile.city}} {{perfil.profile.country}}</p>
                 </div>
                 <div class="col-6">
-                    <h5>Redes Sociais:</h5>
+                    <h5>Social networks:</h5>
                     {% for n in perfil.network.all %}
                     {% if n.url != '' and n.url != 'None' %}
                     <a href="{{n.url}}" target="_blank" class="s-label"><i class="fab fa-{{n.name}} mx-2"></i></a>
@@ -75,7 +75,7 @@
                         </div>
                         {% if perfil == request.user and request.user.is_authenticated %}
                         <button class="btn-default btn-red" onclick="location.href='http://127.0.0.1:8000/perfil/edit-profile'">
-                            <i class="fas fa-cog mx-2"></i>Editar Perfil
+                            <i class="fas fa-cog mx-2"></i>Edit profile
                         </button>
                         {% endif %}
                     </div>
@@ -87,14 +87,14 @@
 <hr>
 <section class="row">
     <div class=" container-box col-md-3 p-3 bg-light">
-        <h2>Perguntas</h2>
-        <span class="fw-bold py-3">Titulo: </span>
+        <h2>Questions</h2>
+        <span class="fw-bold py-3">Title: </span>
         <form action="{% url 'profile:user-profile' perfil.profile.user.user_name %}" method="get">
             <input name="title" type="text" value="{{request.GET.title}}" class="form-control" placeholder="Pesquisar...">
         </form>
         <br>
         {% if perfil == request.user and request.user.is_authenticated %}
-        <a href="{%  url 'profile:config' %}"><button class="btn-default btn-red" type="button">Configurações</button></a>
+        <a href="{%  url 'profile:config' %}"><button class="btn-default btn-red" type="button">settings</button></a>
         {% endif %}
         {% if request.GET.title %}
         <a href="{%  url 'profile:user-profile' perfil.profile.user.user_name %}"><button class="btn-default btn-red" type="button">Reset</button></a>
