@@ -4,23 +4,23 @@
 {% block body_home %}
 <div class="row">
     <div class="container-box col-md-3 p-3 bg-light">
-        <h5>settings</h5>
+        <h5>Settings</h5>
         <div class="col mb-2 py-1">
-            <a href="{%  url 'post' %}"><button class="btn-default btn-red" type="button">My questions</button></a>
+            <a href="{% url 'post' %}"><button class="btn-default btn-red" type="button">My questions</button></a>
         </div>
         <div class="col mb-2 py-1">
-            <a href="{%  url 'accounts:user-change' user.pk %}"><button class="btn-default btn-red" type="button">My account</button></a>
+            <a href="{% url 'accounts:user-change' user.pk %}"><button class="btn-default btn-red" type="button">My account</button></a>
         </div>
         <div class="col mb-2 py-1">
-            <a onclick="location.href='http://127.0.0.1:8000/perfil/edit-profile'"><button class="btn-default btn-red" type="button">Atualizar Perfil</button></a>
+            <a onclick="location.href='http://127.0.0.1:8000/perfil/edit-profile'"><button class="btn-default btn-red" type="button">Update Profile</button></a>
         </div>
         {% if user.is_superuser %}
         <hr>
         <div class="col mb-2 py-1">
-            <a href="{%  url 'profile:users-profile' %}"><button class="btn-default btn-red" type="button">All Users</button></a>
+            <a href="{% url 'profile:users-profile' %}"><button class="btn-default btn-red" type="button">All Users</button></a>
         </div>
         <div class="col mb-2 py-1">
-            <a href="{%  url 'post-todos' %}"><button class="btn-default btn-red" type="button">all questions</button></a>
+            <a href="{% url 'post-todos' %}"><button class="btn-default btn-red" type="button">All questions</button></a>
         </div>
         {% endif %}
     </div>

@@ -1,7 +1,7 @@
 SECRET_KEY=django-insecure-ufeh4!0eazwfyp9xx@&(&&kai^-0ixcgt3mo(uf6o0nt-i$^&3
 DEBUG=True
 SUPER_USER=ADMIN
-EMAIL= br.leticia@hotmail.com
+EMAIL= seu email
 
 NAME_DB=db.sqlite3
 USER_DB=root

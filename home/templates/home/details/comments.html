@@ -8,11 +8,10 @@
     </div>
 </form>
 {% else %}
-<div class="p-2 bg-light shadow-sm rounded">
+<div class="p-2 bg-light shadow-sm rounded text-center">
     <div class="h4">Hello,</div>
     <p>You need to login to the system to comment.</p>
-    <button class="btn-default btn-red" onclick="location.href='{% url 'accounts:login' %}'"><i class="fas fa-sign-in-alt"></i> Register/Login
-    </button>
+    <button class="btn-default btn-red" onclick="location.href='{% url 'accounts:login' %}'"><i class="fas fa-sign-in-alt"></i> Register/Login</button>
 </div>
 {% endif %}
 <!-- COMMENT -->

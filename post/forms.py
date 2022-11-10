@@ -13,7 +13,7 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ('author', 'title', 'desc', 'created_date',
-                    'published_date', 'is_activate', 'category', 'tags', 'files1', 'files2', 'files3') 
+            'published_date', 'is_activate', 'category', 'tags', 'files1', 'files2', 'files3') 
 
 
 class CategoryForm(forms.ModelForm):

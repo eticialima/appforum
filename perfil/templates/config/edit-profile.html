@@ -30,16 +30,16 @@
             <input type="text" name="city" class="form-control" required="required" value="{{ profile.city }}" />
         </div>
         <div class="col-md-4 mb-3">
-            <label for="input">occupation </label>
+            <label for="input">Occupation </label>
             <input type="text" name="occupation" class="form-control" required="required" value="{{ profile.occupation }}" />
         </div>
         <div class="col-md-4 mb-3">
             <br>
             <div class="form-check-inline">
-                <label><input type="radio" class="form-check-input" {% if profile.gender == "Homem" %} checked="checked" {% endif %} name="gender" value="Homem"> Homem</label>
+                <label><input type="radio" class="form-check-input" {% if profile.gender == "Homem" %} checked="checked" {% endif %} name="gender" value="Homem"> Men</label>
             </div>
             <div class="form-check-inline">
-                <label><input type="radio" class="form-check-input" {% if profile.gender == "Mulher" %} checked="checked" {% endif %} name="gender" value="Mulher"> Mulher</label>
+                <label><input type="radio" class="form-check-input" {% if profile.gender == "Mulher" %} checked="checked" {% endif %} name="gender" value="Mulher"> Woman</label>
             </div>
         </div>
         <div class="col-md-4 mb-3">
@@ -48,7 +48,7 @@
         </div>
         <div class="col-md-12 mb-3">
             <div class="row mb-3">
-                <h3>Refes Sociais</h3>
+                <h3>Social Network</h3>
                 {% for n in network.all %}
                 <label for="input" class="col-sm-2 col-form-label">{{n.name|title}}</label>
                 <div class="col-sm-10">

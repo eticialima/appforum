@@ -1,5 +1,5 @@
 {% extends 'config/_config.html' %}
-{% block title %}Postagens{% endblock %}
+{% block title %}Post{% endblock %}
 {% load static %}
 {% block config %}
 <div class="row">
@@ -13,11 +13,11 @@
             <div class="col-auto">
                 <div class="col-auto form-check form-check-inline">
                     <input type="radio" name="is_activate" value="1" {% if request.GET.is_activate == "1" %} checked="checked" {% endif %}>
-                    <label for="is_activate">activated</label>
+                    <label for="is_activate">Activated</label>
                 </div>
                 <div class="col-auto form-check form-check-inline">
                     <input type="radio" name="is_activate" value="0" {% if request.GET.is_activate == "0" %} checked="checked" {% endif %}>
-                    <label for="is_activate">deactivated</label>
+                    <label for="is_activate">Deactivated</label>
                 </div>
             </div>
             <div class="col-auto">

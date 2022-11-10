@@ -31,8 +31,7 @@
             <div class="col-sm-6">
                 <div class="form-group mt-3">
                     <label for="type_user">User Type</label>
-                    {% render_field form.type_user class="form-select form-control" id="type_user" name="type_user"
-                    disabled="disabled" %}
+                    {% render_field form.type_user class="form-select form-control" id="type_user" name="type_user"  disabled="disabled" %}
                 </div>
             </div>
             <div class="col-sm-6">
@@ -40,8 +39,7 @@
                     <label for="is_active"><code>User is_active ?</code></label>
                     {% render_field form.is_active class="form-check-input" id="is_active" name="is_active" %}
                     <br>
-                    <small id="text-help" class="text-muted">After deactivating the user account, you will no longer have access. Your
-                        posts and comments will be disabled.</small>
+                    <small id="text-help" class="text-muted">After deactivating the user account, you will no longer have access. Your posts and comments will be disabled.</small>
                 </div>
             </div>
         </div>

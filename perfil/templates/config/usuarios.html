@@ -10,11 +10,11 @@
         <form class="row align-items-center" method="get" action="{% url 'profile:users-profile' %}">
             <div class="col-auto form-check form-check-inline">
                 <input type="radio" name="is_active" value="1" {% if request.GET.is_active == "1" %} checked="checked" {% endif %}>
-                <label for="is_active">activated</label>
+                <label for="is_active">Activated</label>
             </div>
             <div class="col-auto form-check form-check-inline">
                 <input type="radio" name="is_active" value="0" {% if request.GET.is_active == "0" %} checked="checked" {% endif %}>
-                <label for="is_activate">deactivated</label>
+                <label for="is_activate">Deactivated</label>
             </div>
             <div class="col-auto">
                 <input name="user_name" type="text" value="{{request.GET.user_name}}" class="form-control" placeholder="Pesquisar pelo nome de usuario...">

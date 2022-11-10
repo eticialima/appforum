@@ -106,7 +106,8 @@ class AddCommentLike(LoginRequiredMixin, View):
             comment.likes.remove(request.user)
 
         next = request.POST.get('next', '/')
-        return HttpResponseRedirect(next) 
+        return HttpResponseRedirect(next)
+        
 
 class AddCommentDislike(LoginRequiredMixin, View):
     login_url = '/accounts/login/'  
